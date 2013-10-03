@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html> 
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+	<meta name="viewport" content="width=600" /> 
+	<meta name="description" content="Скачать музыку вконтакте без расширений" />
+	<meta name="keywords" content="скачать музыку, вконтакте, скачать звук, музыка вконтакте" />
+	<link rel="shortcut icon" href="//icons.notset.ru/down.png"> 
+	<link href="//fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/assets/styles/common.css" type="text/css" media="all" />
+
+	<title>Скачать музыку ВКонтакте</title>
+</head>
+<body>
+	<div class="page">
+		<h1>Скачать музыку ВКонтакте<span>Загрузка музыки на компьютер из плейлиста vk.com</span></h1>
+		<section class="content-wrapper">
+			<div class="login-wrapper">
+				<input id="login" type="button" value="Загрузить список музыки" />
+				<img id="preloader" src="/assets/images/preloader-large.gif" alt="&hellip;" />
+			</div>
+			<table class="content">
+			<tr>
+				<td class="music-wrapper">
+					<ul id="playlist" class="playlist">
+						<li id="placeholder" class="track">
+							<div class="manage">
+								<a href="#download" class="download" title="Скачать аудиозапись">Скачать</a>
+							</div>
+							<span class="artist"></span>
+							<span class="title"></span>
+						</li>
+					</ul>
+				</td>
+			</tr>
+			</table>
+		</section>
+	</div>
+	<footer>
+		<div class="footer-menu">
+			<ul>
+				<li>&larr; <a href="http://notset.ru/">на главную</a></li>
+			</ul>
+		</div>
+	</footer>
+	<div id="popup"></div>
+	<script type="text/javascript" src="//vk.com/js/api/openapi.js"></script>
+	<script type="text/javascript" src="/assets/scripts/jquery.js"></script>
+	<script type="text/javascript" src="/assets/scripts/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+server {
+    listen   80;
+	server_name notset.ru;
+
+	charset utf-8;
+	access_log  /var/log/http/notset_nginx_access.log  main; 
+    error_log   /var/log/http/notset_nginx_error.log  warn;
+
+  	location = /favicon.ico {
+		log_not_found off;
+		access_log off;
+	} 
+
+	index index.html;
+	root /srv/http/notset.ru/public; 
+} 
+
+server {
+	listen 80;
+ 	server_name *.notset.ru; 
+
+	rewrite .* http://notset.ru/ permanent; 
+}
+
+server {
+    listen   80;
+	server_name ip.notset.ru;
+ 	server_name i.notset.ru; 
+ 	server_name whois.notset.ru; 
+ 	server_name snils.notset.ru; 
+
+	charset utf-8;
+	access_log  /var/log/http/notset_nginx_access.log  main; 
+    error_log   /var/log/http/notset_nginx_error.log  warn;
+ 
+	set $subdomain "";
+    if ($host ~* ^([a-z0-9-\.]+)\.notset.ru$) {
+        set $subdomain $1;
+    }
+
+ 	location = /favicon.ico {
+		log_not_found off;
+		access_log off;
+	} 
+
+	location / {
+		include fastcgi_params; 
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Request-Filename $request_filename;
+
+		fastcgi_param SCRIPT_FILENAME /srv/http/notset.ru/tools/$subdomain.php;
+		fastcgi_param QUERY_STRING    $query_string;
+
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+		proxy_read_timeout 512;
+		fastcgi_pass 127.0.0.1:9000;
+	}  
+}
+
+server {
+	listen 80;
+	server_name workenv.notset.ru;
+	server_name icons.notset.ru;
+
+    charset utf-8;
+	access_log  /var/log/http/notset_nginx_access.log  main; 
+    error_log   /var/log/http/notset_nginx_error.log  warn; 
+
+	index index.html;
+
+ 	set $subdomain "";
+    if ($host ~* ^([a-z0-9-\.]+)\.notset.ru$) {
+        set $subdomain $1;
+    } 
+	
+  	location = /favicon.ico {
+		log_not_found off;
+		access_log off;
+	} 
+   	autoindex on;  
+	root /srv/http/notset.ru/$subdomain;  
+}
+
+server {
+    listen   80;
+	server_name vk.notset.ru;
+
+	charset utf-8;
+	access_log  /var/log/http/vk.notset_nginx_access.log  main; 
+    error_log   /var/log/http/vk.notset_nginx_error.log  warn;
+
+ 	root /srv/http/notset.ru/vk/public;  
+ 
+	location = / {
+		index index.html;
+	}
+
+	location / {
+		try_files $uri $uri/ /script.php?$args;
+	}
+
+	location ~* ^\/files\/.*\/(.*\.mp3)$ {
+	#	types {application/octet-stream mp3;}
+		add_header Content-disposition "attachment; filename=$1";
+	} 
+
+ 	location = /script.php { 
+		include fastcgi_params; 
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Request-Filename $request_filename;
+
+		fastcgi_param SCRIPT_FILENAME /srv/http/notset.ru/vk/public$fastcgi_script_name; 
+		fastcgi_param QUERY_STRING    $query_string;
+
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+		proxy_read_timeout 512;
+		fastcgi_pass 127.0.0.1:9000;
+	}  
+}
