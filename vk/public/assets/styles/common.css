@@ -31,7 +31,6 @@ a.local:hover{border:0;}
 .cf:before, .cf:after{content:"";display:table;}
 .clear, .cf:after{clear:both;}
 .cf{zoom:1;}
-html, body{height: 100%;}
 body{
 
 	font:14px/1.5 'PT Sans', Arial, sans-serif;
