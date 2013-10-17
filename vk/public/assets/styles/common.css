@@ -32,10 +32,8 @@ a.local:hover{border:0;}
 .clear, .cf:after{clear:both;}
 .cf{zoom:1;}
 body{
-
 	font:14px/1.5 'PT Sans', Arial, sans-serif;
 	color:#333; 
-	min-width:940px;
 	-webkit-font-smoothing:antialiased; 
 	background:#fff url(//notset.ru/assets/images/grid.png);
 }
@@ -61,7 +59,7 @@ h1 span{
 	
 .page{width:550px; margin:2% auto 10px auto;}
 
-	.content-wrapper{
+	.wrapper{
 		position:relative;
 		margin-top:15px;
 		width:100%;
@@ -79,12 +77,16 @@ h1 span{
 		table.content{width:100%; min-height:150px; display:none;}
 		table.content td{vertical-align:top;}	
 
-	.login-wrapper{
+	.authenticate{
 		text-align:center;
 		padding-top:50px;
 	}
+		.authenticate.more{
+			text-align:center;
+			padding:0 0 30px 0;
+		} 
 	
-	.music-wrapper{
+	.music{
 		text-align:center;
 		padding:20px;
 	}

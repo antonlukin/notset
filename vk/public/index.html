@@ -15,14 +15,10 @@
 <body>
 	<div class="page">
 		<h1>Скачать музыку ВКонтакте<span>Загрузка музыки на компьютер из плейлиста vk.com</span></h1>
-		<section class="content-wrapper">
-			<div class="login-wrapper">
-				<input id="login" type="button" value="Загрузить список музыки" />
-				<img id="preloader" src="/assets/images/preloader-large.gif" alt="&hellip;" />
-			</div>
+		<section class="wrapper">
 			<table class="content">
 			<tr>
-				<td class="music-wrapper">
+				<td class="music">
 					<ul id="playlist" class="playlist">
 						<li id="placeholder" class="track">
 							<div class="manage">
@@ -35,6 +31,10 @@
 				</td>
 			</tr>
 			</table>
+			<div class="authenticate">
+				<input id="login" type="button" value="Загрузить список музыки" />
+				<img id="preloader" src="/assets/images/preloader-large.gif" alt="&hellip;" />
+			</div> 
 		</section>
 	</div>
 	<footer>

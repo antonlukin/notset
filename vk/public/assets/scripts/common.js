@@ -1,4 +1,5 @@
 var $ = jQuery.noConflict();
+var page = 1;
 
 $.oauthpopup = function(options)
 {
@@ -24,17 +25,16 @@ $.oauthpopup = function(options)
 
 function after_login(message){
 	if(typeof message !== 'undefined')
-		$("td.music-wrapper").css('padding-top', '60px').html(message);
+		$("td.music").css('padding-top', '60px').html(message);
 
-	$(".login-wrapper").fadeOut('fast', function(){			
+	$(".authenticate").fadeOut('fast', function(){
 		$(".content").fadeIn('fast');
-	});   
+	});
 }
 
 function show_music(set){
 	var list = '';
 	var placeholder = $("li#placeholder").html();
-	$("li#placeholder").remove();
 	$.each(set.response, function(i,ii){
 		var track = document.createElement('li');
 		$(track).addClass('track');	
@@ -55,21 +55,60 @@ function show_music(set){
     return after_login();
 }
 
-function start_preloader(el){
-	$(el).fadeOut('fast', function(){
+function preloader(show){
+    show = (typeof show === 'undefined') ? true : show;
+
+	if(!show)
+		return $("#preloader").fadeOut('fast', function(){ 
+			$(".authenticate").hide();
+		}); 
+
+	$(".authenticate").show();
+
+	$("#login").fadeOut('fast', function(){
 		$("#preloader").fadeIn('fast');
-	});
+	}); 
 }
 
 function show_button(){
+	$(".content").hide();
+ 	$(".authenticate").show(); 
+
 	$("#preloader").fadeOut('fast', function(){
 		$("#login").fadeIn('fast');
 	});
 }
 
+function vk_more(offset){
+	if(!page)
+		return;
+
+	var current = page;
+	page = false;
+
+	offset = (typeof offset === 'undefined') ? "offset=0" : "offset=" + offset;    
+
+	$.ajax({
+		type: 'POST', url: '/get', data: offset,
+		error: function(){
+			return show_error('Невозможно получить список аудиозаписей');
+		},
+		success: function(data){
+			if(data.error)
+	 			return show_error('Невозможно получить список аудиозаписей'); 
+
+			if(data.success.response.length == 0)
+				return after_login();
+		
+			show_music(data.success);
+			page = current + 1;
+		}
+	});         
+}
+
 function vk_get(){
 	$.ajax({
-		type: 'POST', url: '/get', data: "",
+		type: 'POST', url: '/get', data: 0,
 		error: function(){
 			return show_error('Невозможно получить список аудиозаписей');
 		},
@@ -105,7 +144,6 @@ function download_single(aid, el){
 	});      
 }
 
-
 function show_error(text) {
 	var popup = jQuery('#popup'),
 		text = popup.text(text),
@@ -132,6 +170,16 @@ function show_error(text) {
 	});
 }
 
+$(window).scroll(function() {
+	if(!page)
+		return; 
+
+	if($(window).scrollTop() == $(document).height() - $(window).height())
+		$(".authenticate").addClass('more').fadeIn('fast', function(){
+	  		vk_more(page);
+		});
+});
+
 $(document).ready(function(){
     vk_get();
 
@@ -146,7 +194,7 @@ $(document).ready(function(){
 	});
 
 	$("#login").on('click', function(){
-		start_preloader('#login');
+		preloader(true);
 		$.oauthpopup({
 			path: '/login',
 			callback: function(){

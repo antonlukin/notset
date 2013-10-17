@@ -11,6 +11,7 @@ function site_url(){
 	define('ABS_PATH', realpath(__DIR__ . '/..')); 
 	define('SITE_URL', site_url());
  	define('CLEAR_TTL', 5);  // how long to store audiofiles (in minutes)
+	define('PER_PAGE', 20);  // audiofiles count per page
 
 	define('DB_HOST', 'localhost');
  	define('DB_USER', 'database_user'); 

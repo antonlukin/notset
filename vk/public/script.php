@@ -117,10 +117,13 @@ function query_download(){
 }
 
 function query_get(){
+	$count = PER_PAGE;
+	$offset = isset($_REQUEST['offset']) ? (int)$_REQUEST['offset'] * $count : 0;
+
 	if(!isset($_SESSION['key']))
 		halt_app(array('location' => '/', 'message' => 'authentication required'));
 
-	if(!$answer = file_get_contents("https://api.vk.com/method/audio.get?count=50&access_token=" . $_SESSION['key']))
+	if(!$answer = file_get_contents("https://api.vk.com/method/audio.get?count={$count}&offset={$offset}&access_token=" . $_SESSION['key']))
 		halt_app(array('location' => '/', 'message' => 'VK api is not accessible'));
 
 	$answer = json_decode($answer);
