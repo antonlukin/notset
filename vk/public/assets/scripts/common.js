@@ -184,8 +184,12 @@ $(document).ready(function(){
     vk_get();
 
 	$("#playlist").on('click', '.download', function(){
-		if($(this).is('.loading, .success'))
+		if($(this).is('.loading'))
 			return false;
+
+ 		if($(this).is('.success'))
+			$(this).removeClass('success');
+
 		$(this).addClass('loading');
 
 		download_single($(this).attr('href'), $(this));
