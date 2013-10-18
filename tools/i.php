@@ -24,6 +24,7 @@
 		<p>
 			<a target="_blank" href="https://www.nic.ru/whois/?query=<?= $_SERVER["REMOTE_ADDR"] ?>&amp;do_search=Search"><?= $_SERVER["REMOTE_ADDR"] ?></a>
 		</p>
-    </div>
+	</div>
+<?php include "classes/ga.php"; ?>
 </body>
 </html>

@@ -102,5 +102,6 @@ function whois($data = '', $default = false){
 			&larr; <a href="http://notset.ru/" title="Сервисы для администрирования и разработки">на главную</a>
 		</header> 
 	</div>
+<?php include "classes/ga.php"; ?>  
 </body>
 </html> 
