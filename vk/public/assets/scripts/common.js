@@ -128,6 +128,7 @@ function download_single(aid, el){
 	$.ajax({
 		type: 'POST', url: '/download', data: {aid: aid.replace(/#download-/, '')},
 		error: function(){
+			el.removeClass('loading');
 			return show_error('Невозможно загрузить аудиозапись');
 		},
 		success: function(data){
