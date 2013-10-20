@@ -95,6 +95,16 @@ function update_db($aid, $filename, $vkid){
 	return true;
 }
 
+function query_count(){
+	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
+ 		halt_app(array('message' => 'Не удалось подключиться к базе данных', 'success' => FALSE));
+	
+	if(!$select = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(id) as count FROM history")))
+		halt_app(array('message' => 'Не удалось подключиться к базе данных', 'success' => FALSE));  
+
+	halt_app(array('message' => $select['count'], 'success' => TRUE));
+}
+
 function query_download(){
 	if(!isset($_SESSION['key']))
 		halt_app(array('location' => '/', 'message' => 'Необходима авторизация'));     
@@ -160,7 +170,7 @@ function query_login(){
 }
  
 function request_uri($url){
-	$locations = array("login" => "query_login", "get" => "query_get", "download" => "query_download");
+	$locations = array("login" => "query_login", "get" => "query_get", "download" => "query_download", "count" => "query_count");
 
 	preg_match("~^[a-z0-9]+~", $url, $uri);
 	$uri = array_shift($uri);                                    

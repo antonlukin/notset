@@ -145,6 +145,27 @@ function download_single(aid, el){
 	});      
 }
 
+function correct_number(number, titles) {
+	cases = [2, 0, 1, 1, 1, 2];
+	return number + " " + titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];       
+}
+
+function show_count(){
+	$.ajax({
+		type: 'POST', url: '/count', data: 0,
+		error: function(){
+			return false;
+		},
+		success: function(data){
+			if(!data.success)
+				return false;
+
+			$("#files-number").html(correct_number(data.success, ['файл', 'файла', 'файлов']));
+			$("p.footer-promo").fadeIn();
+		}
+	}); 
+}
+
 function show_error(text) {
 	var popup = jQuery('#popup'),
 		text = popup.text(text),
@@ -208,4 +229,5 @@ $(document).ready(function(){
 		});     	
 	});
 	
+	show_count();
 });

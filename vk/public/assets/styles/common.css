@@ -168,8 +168,11 @@ h1 span{
 			position:absolute;
 			left:3px;			
 			font-size:0.9em;
+			width:100%;
 		}
-			.footer-menu ul li{float:left; margin-right:10px;}
+			.footer-menu ul li{margin-right:10px;}
+			.footer-menu .footer-promo{position:absolute; text-align:right; right:0; top:0; display:none;}
+	 			.footer-menu .footer-promo{font-size:1em; text-shadow:1px 1px #e6e6e6;}
 	
 input#login {
 	text-decoration:none;
