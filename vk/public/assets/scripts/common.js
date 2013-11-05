@@ -1,5 +1,5 @@
 var $ = jQuery.noConflict();
-var page = 1;
+var page = false;
 
 $.oauthpopup = function(options)
 {
@@ -119,6 +119,7 @@ function vk_get(){
 			if(data.success.response.length == 0)
 				return after_login('Аудиозаписи не найдены');
 			
+			page = 1;
 			show_music(data.success);
 		}
 	});        
