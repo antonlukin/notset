@@ -73,7 +73,7 @@ function whois($data = '', $default = false){
 <html lang="ru">
 <head>
 	<meta charset="UTF-8" />
- 	<title>notset / Whois доменов</title>
+ 	<title>Whois сервис. Данные о владельцах и регистраторах доменов</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
 	<meta name="viewport" content="width=600" /> 
 	<meta name="description" content="Whois доменов из более 50 зон" />
@@ -84,7 +84,7 @@ function whois($data = '', $default = false){
 </head>
 <body>
 	<div class="content">
-		<h1>Whois доменов<span>Данные о владельцах и регистраторах доменов</span></h1>
+		<h1>Whois сервис<span>Данные о владельцах и регистраторах доменов</span></h1>
 		<div class="block">
 			<form action="/" method="post">
 				<div class="block-input">

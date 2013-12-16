@@ -29,7 +29,7 @@ function print_vars($vars, $out = ''){
 <html lang="ru">
 <head>
 	<meta charset="UTF-8" />
- 	<title>notset / Определение ip-адреса</title>
+ 	<title>Определение ip-адреса</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
 	<meta name="viewport" content="width=600" />  
 	<meta name="description" content="Определение ip-адреса" />
@@ -43,7 +43,7 @@ function print_vars($vars, $out = ''){
 		<h1>Определение ip-адреса<span>Информация об ip и расширенные заголовки браузера</span></h1>
 		<div class="block">
 			<p>
-				<a target="_blank" href="https://www.nic.ru/whois/?query=<?= $_SERVER["REMOTE_ADDR"] ?>&amp;do_search=Search"><?= $_SERVER["REMOTE_ADDR"] ?></a>
+				<a class="black" target="_blank" href="https://www.nic.ru/whois/?query=<?= $_SERVER["REMOTE_ADDR"] ?>&amp;do_search=Search"><?= $_SERVER["REMOTE_ADDR"] ?></a>
 			</p>       
 			<div class="block-extended">
 				<?= print_vars($vars) ?>       		   

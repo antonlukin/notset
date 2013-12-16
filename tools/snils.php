@@ -102,7 +102,7 @@ if(isset($_REQUEST['test'])){
 </head>
 <body>
 	<div class="content">
-		<h1>Проверка СНИЛС <span>Введите номер вместе с котрольной суммой</span> </h1>
+		<h1>Коррекция номеров СНИЛС <span>Введите номер вместе с котрольной суммой</span> </h1>
 		<div class="block">
 			<form action="/?test" id="test" method="post">
 				<div class="block-input">
