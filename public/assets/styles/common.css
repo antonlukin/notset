@@ -147,6 +147,8 @@ h1 span{
 }
 
 header{position:relative;width:550px; margin:20px auto; }
+	header p.right{position:absolute;;top:0; right:0;} 
+ 	header p.center{text-align:center;}  
  
 .content{position:relative;margin-top:5%;}    
 
