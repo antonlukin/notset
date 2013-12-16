@@ -162,7 +162,7 @@ function show_count(){
 				return false;
 
 			$("#files-number").html(correct_number(data.success, ['файл', 'файла', 'файлов']));
-            if((data.success - 1) % 10 === 0)
+            if((data.success % 10 === 1) && (data.success % 100 !== 11))
 				$("#files-ending").remove();
 
 			$("p.footer-promo").fadeIn();
