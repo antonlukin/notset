@@ -67,6 +67,7 @@ body{
 	color: #333;
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 13px;
+	overflow-y:scroll;
 }
 
 a{color:#b22207; text-decoration: underline;}
@@ -313,6 +314,7 @@ header{position:relative;width:550px; margin:20px auto; }
 
 /* custom pages styles */
 .content.page-my{width:550px; margin:2% auto 10px auto;}
+.content.page-age{width:550px; margin:2% auto 10px auto;} 
  
 .cb-desk{
 	position:relative;
@@ -333,6 +335,8 @@ header{position:relative;width:550px; margin:20px auto; }
 		margin-left:-15px;
 		margin-top:-15px;
 	}
+	.cb-desk .cb-info{text-align:center; font-size:1.2em;}
+	.cb-desk  h1{font-size:1.6em; padding:15px;}
 
 .cb-menu{
     padding:0;
@@ -353,6 +357,13 @@ header{position:relative;width:550px; margin:20px auto; }
     box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 	padding:10px 20px;
 }
+	.cb-menu li span.cb-icon{
+		position: absolute;
+		width: 50px;
+		left: 20px;
+		top: 15px;
+	}
+
 	.cb-menu li:last-child{margin-bottom: 0;}
 
 	.cb-menu li input{
@@ -364,6 +375,14 @@ header{position:relative;width:550px; margin:20px auto; }
 		.cb-menu li input.item-name{width:325px;}
 		.cb-menu li input.item-title{width:515px} 
 
+	.cb-menu li h2.{      
+		position:absolute;
+		left:0;
+		top:20px;
+		width:100%;
+		text-align:center;
+	}
+
 	.cb-menu li h2{
 		font-size: 1.6em;
 	}
@@ -371,6 +390,55 @@ header{position:relative;width:550px; margin:20px auto; }
 		font-size: 1em;
 		color: #666;
 	}
+
+.cc-menu{
+    padding:0;
+    margin:20px auto;
+    width: 570px;
+	margin-bottom:10px;
+}
+
+.cc-menu li{
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    height:auto;
+	min-height:50px;
+	float:left;
+	
+	width:137px;
+	margin:5px 10px;
+	margin-left:0;
+	 -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+	padding:10px 20px;
+
+	cursor:pointer;
+}
+	.cc-menu li span{
+		position: absolute;
+		width: 50px;
+		left: 20px;
+		top: 15px;
+	}
+
+	.cc-menu li h2{      
+		position:absolute;
+		left:75px;
+		top:20px;
+		font-size: 1.6em;
+	}
+ 
+	.cc-menu li:hover{
+		box-shadow: -1px -1px 2px rgba(0,0,0,0.2);
+	} 
+	.cc-menu li:active{
+		box-shadow: inset 0px 0px 3px 1px #777;
+	}          
+ 	.cc-menu li.pushed{
+		box-shadow: inset 0px 0px 2px 1px #999;
+	}           
 
 
 h1#done-title{display:none;}
@@ -399,7 +467,13 @@ h1.line {
   
 	h1.line > b:before {margin-left: -102%;}
 	h1.line > b:after {margin-left: 2%;}
-             
+
+#result{
+	display:none;
+	background-position:50px 50%;
+	background-repeat:no-repeat;
+}
+
 #reminder{display:none;}
 #reminder.normal .cb-menu li:hover{
 	background-color:#fff;

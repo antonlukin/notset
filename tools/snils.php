@@ -71,34 +71,6 @@ if(isset($_REQUEST['test'])){
  	<link rel="shortcut icon" href="//icons.notset.ru/cogs.png"> 
 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/common.css" />
 	<link href="//fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css"> 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>    
-    <script type="text/javascript">
-        $(function(){
-            function removeSpaces(s) {
-                var spaceRe = /[\s-]+/g;
-                return s.replace(spaceRe, "");
-            }
-
-            $("#test").submit(function(){
-                $("#res").html('');
-                $("#res").slideUp(200);
-                var snils = removeSpaces($("#sval").val());
-                if(snils.length != 11){
-                    $("#res").slideDown(200, function(){$(this).html('<div style="text-align:center;color:#e88;">Неверный формат</div>')});
-                    return false;
-                }
-
-                $.post("?test", {num:snils}, function(data){
-                    $("#res").slideDown(200, function(){$(this).html(data)});
-                });
-                return false;
-            });
-            $("#find").live('click', function(){
-                $("#test").trigger('submit');
-                return false;
-            });
-        });
-    </script>
 </head>
 <body>
 	<div class="content">
@@ -118,6 +90,8 @@ if(isset($_REQUEST['test'])){
 			&larr; <a href="http://notset.ru/" title="Сервисы для администрирования и разработки">на главную</a>
 		</header>  
 	</div> 
-<?php include "classes/ga.php"; ?> 
+ 	<script type="text/javascript" src="//notset.ru/assets/scripts/jquery.js"></script>
+	<script type="text/javascript" src="//notset.ru/assets/scripts/snils.js"></script>          
+	<?php include "classes/ga.php"; ?> 
 </body>
 </html>
