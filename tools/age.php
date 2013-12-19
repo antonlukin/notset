@@ -8,14 +8,14 @@
 	<meta name="keywords" content="восточный календарь, китайский календарь, возраст, определить возраст" />
 	<meta name="description" content="Чтобы узнать возраст человека, не задавая прямой вопрос, просто спросите, кто он по восточному календарю" />
 	<meta property="og:image" content="//notset.ru/assets/images/whatage.jpg" /> 
- 	<link rel="image_src" href="//notset.ru/assets/images/whatage.jpg" />  
+	<link rel="image_src" href="//notset.ru/assets/images/whatage.jpg" />  
 	<link rel="shortcut icon" href="//icons.notset.ru/age.png"> 
 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/common.css" />
 	<link href="//fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="content page-age">
-		<h1>Определение возраста<span>Чтобы узнать возраст человека, не задавая прямой вопрос, просто спросите, кто он по восточному календарю</span></h1>
+		<h1>Определение возраста<span>Чтобы узнать возраст, не задавая прямой вопрос, просто спросите, кто он по восточному календарю</span></h1>
  		<div id="result" class="cb-desk">
 			<h1>Возможный возраст</h1>
 			<div class="cb-info"></div>
