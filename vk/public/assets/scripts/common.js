@@ -151,6 +151,14 @@ function correct_number(number, titles) {
 	return number + " " + titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];       
 }
 
+function show_promo(){
+	if($.cookie("promo"))
+		return;
+
+	$("#vk_like").html(VK.Share.button({url: "http://vk.notset.ru/"},{type: "button", text: "Поделиться"}));
+	$("#promo").fadeIn('slow');
+}
+
 function show_count(){
 	$.ajax({
 		type: 'POST', url: '/count', data: 0,
@@ -158,6 +166,8 @@ function show_count(){
 			return false;
 		},
 		success: function(data){
+			show_promo();
+
 			if(!data.success)
 				return false;
 
@@ -232,6 +242,14 @@ $(document).ready(function(){
 			}
 		});     	
 	});
+
+	$(document).on('click', '#promo-close', function(e){
+		$.cookie("promo", "set", {expires: 100});
+		$(".promo").fadeOut();
+		return false;
+	});
+
+	
 	
 	show_count();
 });
