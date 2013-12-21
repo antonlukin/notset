@@ -95,6 +95,20 @@ function update_db($aid, $filename, $vkid){
 	return true;
 }
 
+function query_promo(){
+ 	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
+		halt_app(array('message' => 'Не удалось подключиться к базе данных', 'success' => FALSE)); 
+
+	mysqli_set_charset($link, "utf8");
+
+	$ip = ip2long($_SERVER['REMOTE_ADDR']);
+
+	if(!mysqli_query($link, "INSERT INTO promo (ip) VALUES ('{$ip}')"))
+		halt_app(array('message' => 'Не удалось добавить действие в БД', 'success' => FALSE)); 
+
+	halt_app(array('message' => 'Действие успешно добавлено', 'success' => TRUE));  
+}
+
 function query_count(){
 	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
  		halt_app(array('message' => 'Не удалось подключиться к базе данных', 'success' => FALSE));
@@ -170,7 +184,7 @@ function query_login(){
 }
  
 function request_uri($url){
-	$locations = array("login" => "query_login", "get" => "query_get", "download" => "query_download", "count" => "query_count");
+	$locations = array("login" => "query_login", "get" => "query_get", "download" => "query_download", "count" => "query_count", "promo" => "query_promo");
 
 	preg_match("~^[a-z0-9]+~", $url, $uri);
 	$uri = array_shift($uri);                                    

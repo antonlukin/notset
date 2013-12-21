@@ -244,6 +244,10 @@ $(document).ready(function(){
 	});
 
 	$(document).on('click', '#promo-close', function(e){
+		$.post("/promo", function(data) {
+			console.log(data);
+		});
+
 		$.cookie("promo", "set", {expires: 100});
 		$(".promo").fadeOut();
 		return false;
