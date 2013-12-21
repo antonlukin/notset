@@ -127,7 +127,7 @@ function vk_get(){
 
 function download_single(aid, el){
 	$.ajax({
-		type: 'POST', url: '/download', data: {aid: aid.replace(/#download-/, '')},
+		type: 'POST', url: '/download', data: {aid: aid.replace(/#download-/, '')}, cache: false,
 		error: function(){
 			el.removeClass('loading');
 			return show_error('Невозможно загрузить аудиозапись');
@@ -137,11 +137,10 @@ function download_single(aid, el){
 				return show_error(data.error); 
 
     		el.removeClass('loading').addClass('success');
-		
-			var link = document.createElement('a');
-			link.href = data.success;
+					
+			var link = document.createElement('iframe');
+			link.src = data.success; 
 			document.body.appendChild(link);
-			link.click();    
 		}
 	});      
 }
@@ -220,6 +219,7 @@ $(document).ready(function(){
     vk_get();
 
 	$("#playlist").on('click', '.download', function(){
+
 		if($(this).is('.loading'))
 			return false;
 
