@@ -23,73 +23,73 @@
 		<ul id="list" class="cc-menu">
 			<li data-info="tiger">
 				<span>
-					<img src="//notset.ru/assets/images/tiger.gif" />
+					<img src="//notset.ru/assets/images/age/tiger.gif" />
 				</span>
 				<h2>Тигр</h2>
 			</li>
  			<li data-info="rabbit">
 				<span>
-					<img src="//notset.ru/assets/images/rabbit.gif" />
+					<img src="//notset.ru/assets/images/age/rabbit.gif" />
 				</span>
 				<h2>Кролик</h2>
 			</li> 
  			<li data-info="dragon">
 				<span>
-					<img src="//notset.ru/assets/images/dragon.gif" />
+					<img src="//notset.ru/assets/images/age/dragon.gif" />
 				</span>
 				<h2>Дракон</h2>
 			</li> 
  			<li data-info="snake">
 				<span>
-					<img src="//notset.ru/assets/images/snake.gif" />
+					<img src="//notset.ru/assets/images/age/snake.gif" />
 				</span>
 				<h2>Змея</h2>
 			</li> 
  			<li data-info="horse">
 				<span>
-					<img src="//notset.ru/assets/images/horse.gif" />
+					<img src="//notset.ru/assets/images/age/horse.gif" />
 				</span>
 				<h2>Лошадь</h2>
 			</li> 
  			<li data-info="sheep">
 				<span>
-					<img src="//notset.ru/assets/images/sheep.gif" />
+					<img src="//notset.ru/assets/images/age/sheep.gif" />
 				</span>
 				<h2>Овца</h2>
 			</li> 
  			<li data-info="monkey">
 				<span>
-					<img src="//notset.ru/assets/images/monkey.gif" />
+					<img src="//notset.ru/assets/images/age/monkey.gif" />
 				</span>
 				<h2>Обезьяна</h2>
 			</li> 
  			<li data-info="cock">
 				<span>
-					<img src="//notset.ru/assets/images/cock.gif" />
+					<img src="//notset.ru/assets/images/age/cock.gif" />
 				</span>
 				<h2>Петух</h2>
 			</li> 
  			<li data-info="dog">
 				<span>
-					<img src="//notset.ru/assets/images/dog.gif" />
+					<img src="//notset.ru/assets/images/age/dog.gif" />
 				</span>
 				<h2>Собака</h2>
 			</li> 
  			<li data-info="pig">
 				<span>
-					<img src="//notset.ru/assets/images/pig.gif" />
+					<img src="//notset.ru/assets/images/age/pig.gif" />
 				</span>
 				<h2>Свинья</h2>
 			</li> 
  			<li data-info="rat">
 				<span>
-					<img src="//notset.ru/assets/images/rat.gif" />
+					<img src="//notset.ru/assets/images/age/rat.gif" />
 				</span>
 				<h2>Крыса</h2>
 			</li> 
  			<li data-info="bull">
 				<span>
-					<img src="//notset.ru/assets/images/bull.gif" />
+					<img src="//notset.ru/assets/images/age/bull.gif" />
 				</span>
 				<h2>Бык</h2>
 			</li> 
