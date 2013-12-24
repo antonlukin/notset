@@ -23,7 +23,9 @@ function halt_app($mixed){
 
 function check_item($start, $cron){
 	$from = new DateTime($start);
-	$diff = $from->diff(new DateTime())->format("%d");
+	$to = new DateTime(date("Y-m-d"));
+
+	$diff = $from->diff($to)->format("%d");
 
 	return $diff % $cron === 0;
 }
@@ -142,7 +144,9 @@ function request_uri($url){
   	define('DB_HOST', 'localhost');
  	define('DB_USER', 'myset'); 
  	define('DB_PASSWORD', 'foepGk32fFvdxDW'); 
- 	define('DB_NAME', 'myset'); 	
+	define('DB_NAME', 'myset'); 	
+
+	date_default_timezone_set('Europe/Moscow');
 
  	request_uri(strtolower(trim($_SERVER['REQUEST_URI'], "/")));  
 }
