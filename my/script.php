@@ -50,7 +50,8 @@ function query_open($link){
 		halt_app(array('message' => 'Не удалось обновить задачу'));     		  
 }
 
-function query_normal($link, $result){
+function query_normal($link, $result = ''){
+	$done = array();
 
 	if(!$query = mysqli_query($link, "SELECT DISTINCT item_id as id FROM log WHERE DATE(time) = CURRENT_DATE"))
 		halt_app(array('message' => 'Не удалось получить список задач')); 
@@ -76,7 +77,7 @@ function query_normal($link, $result){
 	halt_app(array('message' => $answer, 'success' => TRUE));  
 }
 
-function query_manager($link, $result){
+function query_manager($link, $result = ''){
 
 	if(!$query = mysqli_query($link, "SELECT id, name, cron, DATE(start) as start, title FROM items"))
 		halt_app(array('message' => 'Не удалось получить список задач'));
@@ -89,7 +90,7 @@ function query_manager($link, $result){
 	halt_app(array('message' => $answer, 'success' => TRUE));  
 } 
 
-function query_add($link, $set){
+function query_add($link, $set = array()){
 	$valid = array('start', 'name', 'cron', 'title');
 
 	foreach($_POST as $i => $v)	{
