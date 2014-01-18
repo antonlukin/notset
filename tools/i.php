@@ -26,5 +26,6 @@
 		</p>
 	</div>
 <?php include "classes/ga.php"; ?>
+<!--ip:<?= $_SERVER["REMOTE_ADDR"] ?>-->
 </body>
 </html>
