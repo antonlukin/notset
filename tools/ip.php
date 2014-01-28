@@ -1,4 +1,7 @@
 <?php
+if(trim($_SERVER["REQUEST_URI"], "/") === 'plain')
+	die($_SERVER["REMOTE_ADDR"]);
+
 $vars = array(
 	"HTTP_X_FORWARDED_FOR", 
 	"HTTP_USER_AGENT", 
