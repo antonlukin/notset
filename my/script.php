@@ -142,10 +142,7 @@ function request_uri($url){
 }        
 
 {
-  	define('DB_HOST', 'localhost');
- 	define('DB_USER', 'myset'); 
- 	define('DB_PASSWORD', 'foepGk32fFvdxDW'); 
-	define('DB_NAME', 'myset'); 	
+  	require_once(__DIR__ . '/config.php');
 
 	date_default_timezone_set('Europe/Moscow');
 
