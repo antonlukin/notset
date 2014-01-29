@@ -15,7 +15,7 @@ var years = {
 
 function get_day(format){
 	var d = format.split("-");
-	return new Date(d[2], d[1]-1, d[0]);
+	return new Date(d[2], d[1], d[0]);
 }
 
 function get_diff(birthday) {
@@ -31,6 +31,7 @@ function get_age(sign){
 
 		s = get_diff(get_day(range[0]));
 		e = get_diff(get_day(range[1]));
+		console.log(s + ": " + e);
 		
 		if(s < 1 || e < 1)
 			continue;
