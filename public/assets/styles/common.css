@@ -292,7 +292,7 @@ header{position:relative;width:550px; margin:20px auto; }
     background-color: #000;
 }
 .ca-menu li:hover .ca-icon{
-    color:#b22207;
+    color:#c02207;
     font-size: 120px;
     opacity: 0.2;
     left: -20px;
@@ -302,7 +302,7 @@ header{position:relative;width:550px; margin:20px auto; }
     transform: rotate(20deg);
 }
 .ca-menu li:hover .ca-main{
-    color: #b22207;
+    color: #bc2207;
     opacity: 1;
 }
 .ca-menu li:hover .ca-sub{
