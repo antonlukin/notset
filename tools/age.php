@@ -9,7 +9,7 @@
 	<meta name="description" content="Чтобы узнать возраст человека, не задавая прямой вопрос, просто спросите, кто он по восточному календарю" />
 	<meta property="og:image" content="//notset.ru/assets/images/whatage.jpg" /> 
 	<link rel="image_src" href="//notset.ru/assets/images/whatage.jpg" />  
-	<link rel="icon" type="image/png" href="//icons.notset.ru/png/icon-pin.png" />
+	<link rel="icon" type="image/png" href="//icons.notset.ru/fav/icon-pin.png" />
 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/common.css" />
 	<link href="//fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css">
 </head>
