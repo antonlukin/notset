@@ -68,7 +68,7 @@ if(isset($_REQUEST['test'])){
 	<meta name="viewport" content="width=600" />   
     <meta name="keywords" content="СНИЛС, контрольная сумма, пенсионное свидетельство" />
     <meta name="description" content="СНИЛС поиск ошибок" />
- 	<link rel="shortcut icon" href="//icons.notset.ru/cogs.png"> 
+	<link rel="icon" type="image/png" href="//icons.notset.ru/png/icon-colocationalt.png" />
 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/common.css" />
 	<link href="//fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css"> 
 </head>

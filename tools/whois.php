@@ -78,7 +78,7 @@ function whois($data = '', $default = false){
 	<meta name="viewport" content="width=600" /> 
 	<meta name="description" content="Whois доменов из более 50 зон" />
 	<meta name="keywords" content="определение whois, узнать адрес домена, workenv, разработка, администрирование" />
-	<link rel="shortcut icon" href="//icons.notset.ru/cogs.png"> 
+	<link rel="icon" type="image/png" href="//icons.notset.ru/png/icon-domain.png" />
 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/common.css" />
 	<link href="//fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css">
 </head>
