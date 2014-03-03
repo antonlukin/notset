@@ -21,7 +21,7 @@ function domain($req, $uri){
 
 function whois($data = '', $default = false){
 	include "classes/list.func.php"; 
-	$uri = trim($_SERVER['REQUEST_URI'], "/");
+	$uri = urldecode(trim($_SERVER['REQUEST_URI'], "/"));
 	$req = @$_REQUEST['domain'];
 
 	if(!$url = domain($req, $uri))
