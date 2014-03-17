@@ -129,7 +129,10 @@ function query_download(){
 	if(!$answer = file_get_contents("https://api.vk.com/method/audio.get?aids=" . $aid . "&access_token=" . $_SESSION['key']))
 		halt_app(array('location' => '/', 'message' => 'Нет доступа к VK api'));
                                                                                                   
-	$answer = json_decode($answer)->response[0];   
+	$answer = @json_decode($answer)->response[0];
+
+	if(!$answer)
+		halt_app(array('message' => 'Возникла ошибка доступа к API ВКонтакте', 'success' => FALSE));   
 	
 	$url = $answer->url;
 	list($path, $filename) = set_filename(&$answer);
