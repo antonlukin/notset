@@ -89,13 +89,13 @@ function vk_more(offset){
 	offset = (typeof offset === 'undefined') ? "offset=0" : "offset=" + offset;    
 
 	$.ajax({
-		type: 'POST', url: '/get', data: offset,
+		type: 'POST', url: '/get', data: offset, timeout: 5000,    
 		error: function(){
-			return show_error('Невозможно получить список аудиозаписей');
+			return show_error('Возникли проблемы с доступом к серверу');  
 		},
 		success: function(data){
 			if(data.error)
-	 			return show_error('Невозможно получить список аудиозаписей'); 
+	 			return show_error(data.error); 
 
 			if(data.success.response.length == 0)
 				return after_login();
@@ -108,9 +108,9 @@ function vk_more(offset){
 
 function vk_get(){
 	$.ajax({
-		type: 'POST', url: '/get', data: 0,
+		type: 'POST', url: '/get', data: 0, timeout: 5000,
 		error: function(){
-			return show_error('Невозможно получить список аудиозаписей');
+			return show_error('Возникли проблемы с доступом к серверу'); 
 		},
 		success: function(data){
 			if(data.error)
@@ -130,7 +130,7 @@ function download_single(aid, el){
 		type: 'POST', url: '/download', data: {aid: aid.replace(/#download-/, '')}, cache: false,
 		error: function(){
 			el.removeClass('loading');
-			return show_error('Невозможно загрузить аудиозапись');
+			return show_error('Возникли проблемы с доступом к серверу');
 		},
 		success: function(data){
 			if(data.error)
@@ -160,7 +160,7 @@ function show_promo(){
 
 function show_count(){
 	$.ajax({
-		type: 'POST', url: '/count', data: 0,
+		type: 'POST', url: '/count', data: 0, timeout:5000,
 		error: function(){
 			return false;
 		},

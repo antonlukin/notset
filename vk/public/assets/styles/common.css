@@ -65,7 +65,7 @@ h1{
 		background:#fff; 
 		padding:20px 32px;
 		width:490px;
-		display:none;
+		display:block;
 		
 		-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 		-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -83,6 +83,15 @@ h1{
 			font-size:0.9em;
 			line-height:1.2;
 		} 
+
+  		.promo-text-more{
+			text-align:center;
+			font-size:1em;
+			line-height:1.5;
+		}  
+ 			.promo-text-more h2{     
+				margin:10px 0;
+			} 
 		a#promo-close{
 			display:block;
 			position:absolute;

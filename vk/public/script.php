@@ -2,7 +2,8 @@
 
 function init_settings(){
 	require_once('../app/settings.php'); 
-	session_start();  
+
+    return get_session();
 }
 
 function is_ajax(){
@@ -21,6 +22,27 @@ function halt_app($mixed){
 
  	header('Content-type: application/json'); 
 	exit($result);
+}
+
+function get_session(){
+	session_start(); 
+	
+	$session = (!isset($_SESSION[SESSION_NAME])) ? FALSE : $_SESSION[SESSION_NAME];
+	
+	session_write_close();
+
+	return $session;
+}
+
+function set_session($session){
+ 	session_start(); 
+
+	if(!empty($session))
+		$_SESSION[SESSION_NAME] = $session;
+
+	session_write_close();
+
+	return true;
 }
 
 function get_template($name, $replace = array()){
@@ -69,7 +91,7 @@ function get_audio($url, $path){
 	if(file_put_contents($path, $data))
 		return SITE_URL."/{$path}";
 
-	return FALSE;
+	return false;
 }
 
 function update_db($aid, $filename, $vkid){
@@ -95,7 +117,7 @@ function update_db($aid, $filename, $vkid){
 	return true;
 }
 
-function query_promo(){
+function query_promo($key){
  	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
 		halt_app(array('message' => 'Не удалось подключиться к базе данных', 'success' => FALSE)); 
 
@@ -109,7 +131,7 @@ function query_promo(){
 	halt_app(array('message' => 'Действие успешно добавлено', 'success' => TRUE));  
 }
 
-function query_count(){
+function query_count($key){
 	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
  		halt_app(array('message' => 'Не удалось подключиться к базе данных', 'success' => FALSE));
 	
@@ -119,16 +141,16 @@ function query_count(){
 	halt_app(array('message' => $select['count'], 'success' => TRUE));
 }
 
-function query_download(){
-	if(!isset($_SESSION['key']))
+function query_download($key){
+	if($key === FALSE)   
 		halt_app(array('location' => '/', 'message' => 'Необходима авторизация'));     
 
 	if(!$aid = $_POST['aid'])
         halt_app(array('location' => '/', 'message' => 'Неверный аудиофайл'));
 
-	if(!$answer = file_get_contents("https://api.vk.com/method/audio.get?aids=" . $aid . "&access_token=" . $_SESSION['key']))
+	if(!$answer = file_get_contents("https://api.vk.com/method/audio.get?aids=" . $aid . "&access_token=" . $key))
 		halt_app(array('location' => '/', 'message' => 'Нет доступа к VK api'));
-                                                                                                  
+
 	$answer = @json_decode($answer)->response[0];
 
 	if(!$answer)
@@ -143,25 +165,25 @@ function query_download(){
    	halt_app(array('message' => 'Возникла ошибка при попытке сохранить аудиофайл', 'success' => FALSE));  
 }
 
-function query_get(){
+function query_get($key){
 	$count = PER_PAGE;
 	$offset = isset($_REQUEST['offset']) ? (int)$_REQUEST['offset'] * $count : 0;
 
-	if(!isset($_SESSION['key']))
+	if($key === FALSE)    
 		halt_app(array('location' => '/', 'message' => 'authentication required'));
 
-	if(!$answer = file_get_contents("https://api.vk.com/method/audio.get?count={$count}&offset={$offset}&access_token=" . $_SESSION['key']))
-		halt_app(array('location' => '/', 'message' => 'VK api is not accessible'));
+	if(!$answer = @file_get_contents("https://api.vk.com/method/audio.get?count={$count}&offset={$offset}&access_token=" . $key))
+		halt_app(array('location' => '/', 'message' => 'VK api не доступен'));
 
 	$answer = json_decode($answer);
 	if(isset($answer->error))
-		halt_app(array('location' => '/', 'message' => 'VK error:' . $answer->error)); 
+		halt_app(array('location' => '/', 'message' => 'VK ошибка:' . $answer->error)); 
 
 	halt_app(array('message' => $answer, 'success' => TRUE));
 }
  
-function query_login(){
-	if(isset($_SESSION['key']))
+function query_login($key){
+	if($key !== FALSE)
 		halt_app(array('message' => get_template("close")));   
 
 	if(isset($_GET['error']))
@@ -176,7 +198,7 @@ function query_login(){
 		if(!$answer->access_token)
 			halt_app(array('message' => get_template("login")));
 
-		$_SESSION['key'] = $answer->access_token;
+		set_session($answer->access_token);
  		halt_app(array('message' => get_template("close")));
 	}
 
@@ -186,7 +208,7 @@ function query_login(){
 	halt_app(array('location' => $authlink));
 }
  
-function request_uri($url){
+function request_uri($url, $key){
 	$locations = array("login" => "query_login", "get" => "query_get", "download" => "query_download", "count" => "query_count", "promo" => "query_promo");
 
 	preg_match("~^[a-z0-9]+~", $url, $uri);
@@ -195,10 +217,10 @@ function request_uri($url){
 	if(!array_key_exists($uri, $locations) || !function_exists($execution = $locations[$uri]))
 		halt_app(array('message' => 'unsigned request', 'location' => '/'));
 
-	$execution();
+	$execution($key);
 } 
 
 {
-	init_settings();
-	request_uri(strtolower(trim($_SERVER['REQUEST_URI'], "/"))); 
+	$key = init_settings();
+	request_uri(strtolower(trim($_SERVER['REQUEST_URI'], "/")), $key); 
 }    
