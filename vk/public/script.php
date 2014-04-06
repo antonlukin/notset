@@ -177,7 +177,7 @@ function query_get($key){
 
 	$answer = json_decode($answer);
 	if(isset($answer->error))
-		halt_app(array('location' => '/', 'message' => 'VK ошибка:' . $answer->error)); 
+		halt_app(array('location' => '/', 'message' => 'VK ошибка:' . serialize($answer->error))); 
 
 	halt_app(array('message' => $answer, 'success' => TRUE));
 }

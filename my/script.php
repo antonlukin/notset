@@ -4,9 +4,19 @@ function is_ajax(){
 	return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 } 
 
-function halt_app($mixed){
-
+function parse_status($mixed){
 	$message = isset($mixed['message']) ? $mixed['message'] : '';
+
+	if(isset($mixed['auth']) && $mixed['auth'] === FALSE)
+		return array("auth" => $message);
+
+	if(isset($mixed['success']) && $mixed['success'] === TRUE)		
+		return array("success" => $message); 
+
+	return array("error" => $message);
+}
+
+function halt_app($mixed){
 	if(!is_ajax()) : 
 		if(isset($mixed['location']))
 			header("Location: " . $mixed['location']);
@@ -15,9 +25,11 @@ function halt_app($mixed){
 
 		exit();
 	endif;
-	$result = (isset($mixed['success']) &&  $mixed['success'] === TRUE) ? json_encode(array("success" => $message)) : json_encode(array("error" => $message)); 
 
- 	header('Content-type: application/json'); 
+	header('Content-type: application/json'); 
+
+	$result = json_encode(parse_status($mixed));
+
 	exit($result);
 } 
 
@@ -29,8 +41,25 @@ function check_item($start, $cron){
 
 	return $diff % $cron === 0;
 }
+
+function get_user($link){
+	$user_key = hash('sha256', $_SERVER[AUTH_HEADER] . AUTH_SALT);
+   
+	if(!$query = mysqli_query($link, "SELECT id FROM users WHERE password = '{$user_key}' LIMIT 1"))
+		halt_app(array('message' => 'Не удалось получить список пользователей'));  
+
+ 	if(mysqli_num_rows($query) < 1)
+		return false; 
+
+	$row = mysqli_fetch_object($query);
+	
+	if(!isset($row->id))
+		return false;
+
+	return $row->id;
+}
  
-function query_close($link){
+function query_close($link, $user){
 
 	if(!isset($_POST['item']) || empty($_POST['item']))
 		halt_app(array('message' => 'Не указан идентификатор задачи'));
@@ -40,7 +69,7 @@ function query_close($link){
 		halt_app(array('message' => 'Не удалось обновить задачу'));     		
 }
 
-function query_open($link){
+function query_open($link, $user){
 
 	if(!isset($_POST['item']) || empty($_POST['item']))
 		halt_app(array('message' => 'Не указан идентификатор задачи'));
@@ -50,7 +79,7 @@ function query_open($link){
 		halt_app(array('message' => 'Не удалось обновить задачу'));     		  
 }
 
-function query_normal($link, $result = ''){
+function query_normal($link, $user, $result = ''){
 	$done = array();
 
 	if(!$query = mysqli_query($link, "SELECT DISTINCT item_id as id FROM log WHERE DATE(time) = CURRENT_DATE"))
@@ -77,7 +106,7 @@ function query_normal($link, $result = ''){
 	halt_app(array('message' => $answer, 'success' => TRUE));  
 }
 
-function query_manager($link, $result = ''){
+function query_manager($link, $user, $result = ''){
 
 	if(!$query = mysqli_query($link, "SELECT id, name, cron, DATE(start) as start, title FROM items"))
 		halt_app(array('message' => 'Не удалось получить список задач'));
@@ -90,7 +119,7 @@ function query_manager($link, $result = ''){
 	halt_app(array('message' => $answer, 'success' => TRUE));  
 } 
 
-function query_add($link, $set = array()){
+function query_add($link, $user, $set = array()){
 	$valid = array('start', 'name', 'cron', 'title');
 
 	foreach($_POST as $i => $v)	{
@@ -99,7 +128,10 @@ function query_add($link, $set = array()){
 
 		$set[] = "$i = '" . mysqli_real_escape_string($link, $v) . "'";
 	}
+
+	//TODO
 	$set = implode(", ", $set);
+	$set .= ", user_id = '" . $user . "'";
 
 	if(!mysqli_query($link, "INSERT INTO items SET {$set}"))
 		halt_app(array('message' => 'Не удалось добавить задачу'));   
@@ -107,7 +139,7 @@ function query_add($link, $set = array()){
 	halt_app(array('message' => 'Задача успешно добавлена', 'success' => TRUE));
 }
 
-function query_delete($link){
+function query_delete($link, $user){
 	
 	if(!isset($_POST['item']) || empty($_POST['item']))
 		halt_app(array('message' => 'Не указан идентификатор задачи'));
@@ -128,17 +160,21 @@ function request_uri($url){
 	);
 
 	preg_match("~^[a-z0-9]+~", $url, $uri);
-	$uri = array_shift($uri);                                    
+	$uri = array_shift($uri);
+
+ 	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
+		halt_app(array('message' => 'Невозможно соединиться с базой данных'));            
+
+	if(!$user = get_user(&$link))
+		halt_app(array('message' => 'Пользователь не авторизован', 'auth' => FALSE));
 
 	if(!array_key_exists($uri, $locations) || !function_exists($execution = $locations[$uri]))
 		halt_app(array('message' => 'Действие не определено'));
    
-	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
-		halt_app(array('message' => 'Невозможно соединиться с базой данных'));           
 
 	mysqli_set_charset($link, "utf8");    
 
-	$execution(&$link);
+	$execution(&$link, $user);
 }        
 
 {
