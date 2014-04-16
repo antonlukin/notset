@@ -139,6 +139,8 @@ function download_single(aid, el){
     		el.removeClass('loading').addClass('success');
 					
 			var link = document.createElement('iframe');
+			$(link).addClass("download-iframe");
+
 			link.src = data.success; 
 			document.body.appendChild(link);
 		}
