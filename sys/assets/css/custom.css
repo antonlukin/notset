@@ -1,0 +1,50 @@
+body{
+	font-family:"Open Sans", sans-serif;
+	color:#333;
+}
+h1,h2,h3,h4{color:#333;}
+a{color:#1f8dd6;}
+a:hover{text-decoration:none;}
+b,strong{font-weight:600;}
+
+.pure-menu{
+	margin-top:50px;
+}
+
+::selection{background:#1f8dd6; color:#eee;}
+
+#menu .pure-menu ul, #menu .pure-menu .menu-item-divided{
+	border-top:0;
+}
+
+code{
+	display:block;	
+	background:#000;
+	padding:8px;
+	padding-left:15px;
+	border-left:4px solid #1f8dd6;
+	color:#eee;
+	margin:15px 0;
+	font-size:.9em;			
+	white-space: pre-wrap;       
+	white-space: -moz-pre-wrap;  
+	white-space: -pre-wrap;      
+	white-space: -o-pre-wrap;    
+	word-wrap: break-word;       
+	font-family:'courier new',monospace;
+}
+code:before{
+	content:"user@server:~> ";
+	color:#48b5ff;
+}
+code.root:before{
+	content:"root@server:~# ";
+}
+code.mysql:before{
+	content:"mysql> ";
+} 
+code.no:before{
+	content:"";
+}
+
+.content ul li{padding:5px 0;}
