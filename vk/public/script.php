@@ -157,7 +157,7 @@ function query_download($key){
 		halt_app(array('message' => 'Возникла ошибка доступа к API ВКонтакте', 'success' => FALSE));   
 	
 	$url = $answer->url;
-	list($path, $filename) = set_filename(&$answer);
+	list($path, $filename) = set_filename($answer);
 
 	if(($location = get_audio($url, $path)) && update_db($aid, $filename, $answer->owner_id))
 		halt_app(array('message' => $location, 'success' => TRUE)); 
