@@ -10,10 +10,10 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600&subset=latin,cyrillic" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="/assets/css/pure-min.css">
     <!--[if lte IE 8]-->
-        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <link rel="stylesheet" href="/assets/css/layouts/side-menu-old-ie.css">
     <!--[endif]-->
     <!--[if gt IE 8]-->
-        <link rel="stylesheet" href="/assets//css/layouts/side-menu.css">
+        <link rel="stylesheet" href="/assets/css/layouts/side-menu.css">
     <!--[endif]-->
 	<link rel="stylesheet" href="/assets/css/custom.css">
 </head>
