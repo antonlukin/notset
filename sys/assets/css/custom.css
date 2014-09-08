@@ -31,7 +31,7 @@ code{
 	white-space: -pre-wrap;      
 	white-space: -o-pre-wrap;    
 	word-wrap: break-word;       
-	font-family:'courier new',monospace;
+	font-family:monospace;
 	max-height:250px;
 	overflow-y: auto;
 }
