@@ -11,11 +11,22 @@
 	<link rel="image_src" href="//notset.ru/assets/images/whatage.jpg" />  
 	<link rel="icon" type="image/png" href="//icons.notset.ru/fav/icon-pin.png" />
 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/common.css" />
+ 	<link rel="stylesheet" type="text/css" href="//notset.ru/assets/styles/social.css" /> 
 	<link href="//fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="content page-age">
 		<h1>Определение возраста<span>Чтобы узнать возраст человека, не задавая прямой вопрос, просто спросите, кто он по восточному календарю</span></h1>
+
+		<div class="social-likes" data-url="http://age.notset.ru">
+			<div class="facebook" title="Поделиться ссылкой на Фейсбуке"></div>
+			<div class="twitter" title="Поделиться ссылкой в Твиттере"></div>
+			<div class="mailru" title="Поделиться ссылкой в Моём мире"></div>
+			<div class="vkontakte" title="Поделиться ссылкой во Вконтакте"></div>
+			<div class="odnoklassniki" title="Поделиться ссылкой в Одноклассниках"></div>
+			<div class="plusone" title="Поделиться ссылкой в Гугл-плюсе"></div>
+		</div>
+
  		<div id="result" class="cb-desk">
 			<h1>Возможный возраст</h1>
 			<div class="cb-info"></div>
@@ -95,12 +106,14 @@
 			</li> 
 		</ul>
 		<br class="clr" />
+
 		<header>
 			&larr; <a href="http://notset.ru/" title="Сервисы для администрирования и разработки">на главную</a>
 		</header> 
 	</div>
   	<script type="text/javascript" src="//notset.ru/assets/scripts/jquery.js"></script>
 	<script type="text/javascript" src="//notset.ru/assets/scripts/age.js"></script>          
+ 	<script type="text/javascript" src="//notset.ru/assets/scripts/social-likes.min.js"></script>           
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
