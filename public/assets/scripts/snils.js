@@ -18,7 +18,7 @@ $(function(){
 		});
 		return false;
 	});
-	$("#find").live('click', function(){
+	$("#find").on('click', function(){
 		$("#test").trigger('submit');
 		return false;
 	});

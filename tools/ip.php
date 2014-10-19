@@ -56,6 +56,6 @@ function print_vars($vars, $out = ''){
 			&larr; <a href="http://notset.ru/" title="Сервисы для администрирования и разработки">на главную</a>
 		</header> 
 	</div>
-<?php include "classes/ga.php"; ?> 
+	<?php include "include/ga.php"; ?> 
 </body>
 </html> 

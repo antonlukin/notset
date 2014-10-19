@@ -45,6 +45,7 @@ function check_item($start, $cron){
 function get_user($link){
 	$user_key = hash('sha256', $_SERVER[AUTH_HEADER] . AUTH_SALT);
    
+	return 1;
 	if(!$query = mysqli_query($link, "SELECT id FROM users WHERE password = '{$user_key}' LIMIT 1"))
 		halt_app(array('message' => 'Не удалось получить список пользователей'));  
 
@@ -53,6 +54,7 @@ function get_user($link){
 
 	$row = mysqli_fetch_object($query);
 	
+	return 1;
 	if(!isset($row->id))
 		return false;
 
@@ -65,7 +67,7 @@ function query_close($link, $user){
 		halt_app(array('message' => 'Не указан идентификатор задачи'));
 
 	$item = mysqli_real_escape_string($link, (int)$_POST['item']);
-	if(!mysqli_query($link, "INSERT INTO log (item_id) VALUES ('{$item}')"))
+	if(!mysqli_query($link, "INSERT INTO log (item_id, user_id) VALUES ('{$item}', 1)"))
 		halt_app(array('message' => 'Не удалось обновить задачу'));     		
 }
 
@@ -165,7 +167,7 @@ function request_uri($url){
  	if(!$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME))
 		halt_app(array('message' => 'Невозможно соединиться с базой данных'));            
 
-	if(!$user = get_user(&$link))
+	if(!$user = get_user($link))
 		halt_app(array('message' => 'Пользователь не авторизован', 'auth' => FALSE));
 
 	if(!array_key_exists($uri, $locations) || !function_exists($execution = $locations[$uri]))
@@ -174,7 +176,7 @@ function request_uri($url){
 
 	mysqli_set_charset($link, "utf8");    
 
-	$execution(&$link, $user);
+	$execution($link, $user);
 }        
 
 {

@@ -92,6 +92,6 @@ if(isset($_REQUEST['test'])){
 	</div> 
  	<script type="text/javascript" src="//notset.ru/assets/scripts/jquery.js"></script>
 	<script type="text/javascript" src="//notset.ru/assets/scripts/snils.js"></script>          
-	<?php include "classes/ga.php"; ?> 
+	<?php include "include/ga.php"; ?> 
 </body>
 </html>

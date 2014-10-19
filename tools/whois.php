@@ -20,7 +20,7 @@ function domain($req, $uri){
 }
 
 function whois($data = '', $default = false){
-	include "classes/list.func.php"; 
+	include "include/list.func.php"; 
 	$uri = urldecode(trim($_SERVER['REQUEST_URI'], "/"));
 	$req = @$_REQUEST['domain'];
 
@@ -30,7 +30,7 @@ function whois($data = '', $default = false){
 	$domain = parse_host($url);
 
 	if(preg_match("~\.рф$~", $domain)) {
-        include "classes/idn.class.php";
+        include "include/idn.class.php";
 
         $idn = new idna_convert(); 
 		$default = $domain;  
@@ -102,6 +102,6 @@ function whois($data = '', $default = false){
 			&larr; <a href="http://notset.ru/" title="Сервисы для администрирования и разработки">на главную</a>
 		</header> 
 	</div>
-<?php include "classes/ga.php"; ?>  
+	<?php include "include/ga.php"; ?>  
 </body>
 </html> 
