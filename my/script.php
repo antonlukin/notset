@@ -177,6 +177,7 @@ function request_uri($url){
 	mysqli_set_charset($link, "utf8");    
 
 	$execution($link, $user);
+	halt_app(array('success' => TRUE));     		   
 }        
 
 {

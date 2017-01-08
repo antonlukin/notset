@@ -176,6 +176,7 @@ function query_get($key){
 		halt_app(array('location' => '/', 'message' => 'VK api не доступен'));
 
 	$answer = json_decode($answer);
+
 	if(isset($answer->error))
 		halt_app(array('location' => '/', 'message' => 'VK ошибка:' . serialize($answer->error))); 
 

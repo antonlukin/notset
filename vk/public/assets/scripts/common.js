@@ -6,11 +6,11 @@ $.oauthpopup = function(options)
 	if (!options || !options.path) {
 		return;
 	}
-	var left = (screen.width/2)-(304);
+	var left = (screen.width/2)-(404);
 	var top = (screen.height/2)-(314);
 	options = $.extend({
 		windowName: 'ConnectWithOAuth'
-	  , windowOptions: 'location=0,status=0,width=608,height=314,scrollbars=no, resizable=no,top='+top+',left='+left
+	  , windowOptions: 'location=0,status=0,width=656,height=378,scrollbars=no, resizable=no,top='+top+',left='+left
 	  , callback: function(){ window.location.reload(); }
 	}, options);
 
@@ -28,8 +28,10 @@ function after_login(message){
 		$("td.music").css('padding-top', '60px').html(message);
 
 	$(".authenticate").fadeOut('fast', function(){
+		$("#faq").fadeOut('fast');
 		$(".content").fadeIn('fast');
 	});
+
 }
 
 function show_music(set){
@@ -153,7 +155,7 @@ function correct_number(number, titles) {
 }
 
 function show_promo(){
-	if($.cookie("promo"))
+	if($.cookie("donate"))
 		return;
 
 	$("#vk_like").html(VK.Share.button({url: "http://vk.notset.ru/"},{type: "button", text: "Поделиться"}));
@@ -245,17 +247,21 @@ $(document).ready(function(){
 		});     	
 	});
 
+	if(window.location.hash == '#logout'){
+		$.cookie("PHPSESSID", null); 
+		location.href = 'http://vk.notset.ru';
+	}
+
 	$(document).on('click', '#promo-close', function(e){
 		$.post("/promo", function(data) {
 			console.log(data);
 		});
 
-		$.cookie("promo", "set", {expires: 100});
+		$.cookie("donate", "set", {expires: 100});
 		$(".promo").fadeOut();
 		return false;
 	});
 
-	
 	
 	show_count();
 });

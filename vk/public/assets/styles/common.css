@@ -59,20 +59,31 @@ h1{
 		padding-top:5px;
 	}
 	
+
 .page{width:550px; margin:2% auto 10px auto;}
 
+	.banner {
+	}
+	 	.banner img { 
+			border:solid 2px #3a3a3c;
+		}
+
+    .faq,
 	.promo{
 		position:relative;
-		margin-top:15px;
+		margin-top:10px;
 		background:#fff; 
-		padding:20px 32px;
-		width:490px;
+		padding:20px;
 		display:none;
 		
 		-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 		-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 	} 
+
+		.promo iframe {
+			margin-top: 20px;
+		}
 
 		.promo-button{
 			padding:6px 20px 4px 0;
@@ -105,13 +116,33 @@ h1{
 		}
 			a#promo-close:hover{color:#b22207;}
 
+
+	.faq {
+		display:block;	
+		font-size:13px;
+		margin-top:15px;
+		padding:10px 32px 32px 32px;
+	}   
+		.faq ul li {
+			margin-left:30px;
+			list-style:disc;
+		}
+ 		.faq p {
+			margin:5px 0;
+		}
+		.faq h2 { 
+			margin-top:15px;
+			margin-bottom:0;
+			font-size:14px;
+			font-weight:700;
+		}
+
 	.wrapper{
 		position:relative;
 		margin-top:15px;
 		width:100%;
 		min-height:150px;
 		background:#fff; 
-		padding:2px;
 		
 		-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 		-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -136,7 +167,7 @@ h1{
    
 	
 	ul.playlist{
-		margin:10px;
+		margin:10px 0;
 		background-color:#fff;
 		overflow:hidden;
 		border:1px solid #d0d0d0;
@@ -284,4 +315,9 @@ input#login:active {
 	display: block;
 	font-family: 'PT Sans', Arial, sans-serif;
 	text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+#yandex-money {
+	width: 100%;
+	margin-top: 20px;
 }

@@ -59,7 +59,7 @@ function query(action, vals){
  	$.ajax({
 		type: 'POST', url: '/' + action, data: vals, dataType:"json",
 		error: function(){
-			return error(warning.action); 
+			return error(warning.server); 
 		},
 		success: function(data){
 			if(typeof data.error !== 'undefined')

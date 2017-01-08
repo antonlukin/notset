@@ -6,22 +6,24 @@
 <div class="content">
 	<h2 class="content-subhead"></h2>
 	<p>
-<!--
-sudo apt-get install daemontools daemontools-run ucspi-tcp djbdns
-sudo adduser --no-create-home --disabled-login --shell /bin/false dnslog
-sudo adduser --no-create-home --disabled-login --shell /bin/false tinydns
+		<code>sudo apt-get install daemontools daemontools-run ucspi-tcp djbdns</code>
+		<code>sudo adduser --no-create-home --disabled-login --shell /bin/false dnslog</code>
+		<code>sudo adduser --no-create-home --disabled-login --shell /bin/false tinydns</code>
 
-sudo tinydns-conf tinydns tinydns /etc/tinydns/ EXTERNAL.IP.ADDRESS
-sudo tinydns-conf tinydns tinydns /etc/tinydns/ 178.79.180.253
+		<code>sudo tinydns-conf tinydns tinydns /etc/tinydns/ EXTERNAL.IP.ADDRESS</code>
 
-sudo ln -s /etc/tinydns /etc/service/tinydns
+		<code>sudo ln -s /etc/tinydns /etc/service/tinydns</code>
 
-commands:
-	sudo initctl start svscan
+	</p>
+	
+	<p>
+		Запуск:
+		<code>sudo initctl start svscan</code>
+	
+		Проверка:
+		<code>sudo svstat /etc/tinydns</code>
 
-	sudo svstat /etc/tinydns			check
-	sudo svc -d /etc/tinydns 			stop
-	sudo svc -u /etc/tinydns 			start
-            -->
+ 		Остановка:
+		<code>sudo svc -d /etc/tinydns</code> 
 	</p>
 </div>
