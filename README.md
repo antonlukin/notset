@@ -1,5 +1,3 @@
-# notset.ru
-
 * vk.notset.ru / загрузка музыки из ВКонтакте  
 * my.notset.ru / личный ежедневник
 * sys.notset.ru / руководство по настройке Ubuntu Server в качестве web-сервера
