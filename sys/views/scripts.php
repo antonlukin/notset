@@ -227,7 +227,7 @@ do
 done
 </code>
 
-<code>sudo aptitude install php5-common php5-dev php5-mysql php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi php5-mcrypt php5-curl php5-gd php5-mhash php5-pspell php5 php5-sqlite libmagick9-dev php5-cli</code>
+<code>sudo apt-get install php7.0 php7.0-cgi  php7.0-cli php7.0-curl php7.0-gd php7.0-json php7.0-mysql php7.0-opcache php7.0-pgsql php7.0-sqlite3 php7.0-xml php7.0-xmlrpc php7.0-bz2 php7.0-fpm php7.0-imap php7.0-intl  php7.0-mbstring php7.0-mcrypt  php7.0-xsl php7.0-zip</code>
 <code>sudo aptitude install mysql-server mysql-client libmysqlclient15-dev</code>
 <code>sudo aptitude install libapache2-mod-rpaf</code>
 	</p>
