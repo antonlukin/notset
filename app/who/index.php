@@ -86,7 +86,7 @@ function whois($data = '', $default = false){
 	<div class="content">
 		<h1>Whois сервис<span>Данные о владельцах и регистраторах доменов</span></h1>
 		<div class="block">
-			<form action="/" method="post">
+			<form action="/whois/" method="get">
 				<div class="block-input">
 				<input type="text" name="domain" placeholder="Доменное имя" value="<?= $domain ? $domain : '' ?>" />
 					<button type="submit"><img src="//notset.ru/assets/images/search.png" alt="Вперед" /></button>
