@@ -1,0 +1,25 @@
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  position: relative;
+
+  width: 68rem;
+  max-width: 100%;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  .grid__item {
+    width: calc(50% - 0.75rem);
+
+    @media screen and (max-width: 767px)  {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

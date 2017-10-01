@@ -1,0 +1,44 @@
+$color-links: rgba(74, 144, 226, 1);
+$color-links-opacity: rgba(74, 144, 226, 0.4);
+$color-hover: rgba(204, 60, 46, 1);
+$color-hover-opacity: rgba(204, 60, 46, 0.4);
+$color-regular: #333333;
+
+$font-regular: "Ubuntu", sans-serif;
+
+
+body {
+  display: block;
+  position: relative;
+
+  width: 100%;
+
+  font: 400 16px/1.5 $font-regular;
+  color: $color-regular;
+}
+
+a {
+  color: $color-links;
+  border-bottom: solid 1px $color-links-opacity;
+  text-decoration: none;
+
+  transition: .4s;
+
+  &:hover {
+    color: $color-hover;
+    border-color: $color-hover-opacity;
+  }
+}
+
+button {
+  background-color: transparent;
+}
+
+::selection {
+  background-color: $color-links;
+  color: white;
+}
+
+::placeholder {
+  color: silver;
+}
