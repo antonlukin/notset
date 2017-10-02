@@ -1,18 +1,19 @@
 .wrap {
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   width: 100%;
   height: calc(100vh - 4rem);
-  min-height: 20rem;
-  padding-top: 2rem;
+  min-height: 24rem;
+  padding-top: 4rem;
   padding-bottom: 4rem;
 
   @media screen and (max-width: 767px) {
     justify-content: flex-start;
     padding-bottom: 8rem;
+    padding-top: 2rem;
 
     height: calc(100vh - 6rem);
   }

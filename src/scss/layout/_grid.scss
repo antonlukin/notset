@@ -1,17 +1,18 @@
 .grid {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
   position: relative;
 
-  width: 68rem;
+  width: 40rem;
   max-width: 100%;
 
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 
   .grid__item {
-    width: calc(50% - 0.75rem);
+    width: calc(100% - 0.75rem);
+    margin: .5rem 0;
 
     @media screen and (max-width: 767px)  {
       width: 100%;
