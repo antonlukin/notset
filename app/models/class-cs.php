@@ -1,24 +1,22 @@
 <?php
 
-class CS extends App() {
+class CS extends App {
+	function __construct() {
+		$query = $_GET['q'];
+		$tld = $_GET['tld'];
 
+		if(!preg_match("~^[a-z0-9|]+$~i", $tld))
+			$tld = "test|local|example|invalid";
+
+		return $this->request($query, $tld);
+	}
+
+	function request($query, $tld) {
+		$dev = preg_match("~^[a-z0-9-.]+\.({$tld})(/[^\s]*)?$~i", $query);
+		$url = ($dev === 1) ? "http://{$query}" : "https://www.google.com/search?q={$query}";
+
+		return $this->redirect($url);
+	}
 }
 
-function r($url) {
-	header("Location: {$url}");
-	exit();
-}
-
-function q($query) {
-	$tld = "test|local|example|invalid";
-
-	$dev = preg_match("~^[a-z0-9-.]+\.({$tld})(/[^\s]*)?$~i", $query);
-
-	if($dev === 1)
-		return r("http://{$query}");
-
-	return r("https://www.google.com/search?q={$query}");
-}
-
-return q($_GET['q']);
-
+new CS;
