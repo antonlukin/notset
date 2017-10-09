@@ -1,12 +1,21 @@
 <?php
 
-class Ip extends App {
+class Ip {
 	function __construct() {
-		$args = [
-			"ip" => $_SERVER["REMOTE_ADDR"]
+        $app = new App;
+
+		return $this->router($app);
+	}
+
+	private function router($app) {
+		$args = $app->args;
+
+ 		$vars = [
+			'ip' => (filter_var($args[0], FILTER_VALIDATE_IP)) ? $args[0] : $_SERVER['REMOTE_ADDR'],
+			'hl' => $_SERVER['HTTP_ACCEPT_LANGUAGE']
 		];
 
-		return $this->render("ip", $args);
+		return $app->render("ip", $vars);
 	}
 }
 

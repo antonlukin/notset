@@ -1,9 +1,13 @@
 <?php
 
 class App {
+	public static $args;
+
 	function __construct() {
 		$query = explode("/", trim($_SERVER["REQUEST_URI"], "/"));
-		$model = $query[0];
+		$model = array_shift($query);
+
+		$this->args = $query;
 
 		if(strlen($model) < 1)
 			return $this->render("index");
@@ -16,12 +20,18 @@ class App {
 		require_once($worker);
 	}
 
-	protected function redirect($path) {
+	public function redirect($path) {
 		header("Location: " . $path);
 		exit;
 	}
 
-	protected function render($view, $vars = []) {
+	public function stop($text) {
+		echo $text;
+
+		exit;
+	}
+
+	public function render($view, $vars = []) {
 		extract($vars);
 
 		require_once(__DIR__ . "/views/{$view}.html");
