@@ -1,8 +1,8 @@
-$color-links: rgba(74, 144, 226, 1);
-$color-links-opacity: rgba(74, 144, 226, 0.4);
+$color-links: #7bd;
+$color-links-opacity: #7bd;
 $color-hover: rgba(204, 60, 46, 1);
 $color-hover-opacity: rgba(204, 60, 46, 0.4);
-$color-regular: #333333;
+$color-regular: #ddd;
 
 $font-regular: "Ubuntu", sans-serif;
 $font-monospace: "Ubuntu Mono", monospace;
@@ -13,8 +13,9 @@ body {
 
   width: 100%;
 
-  font: 400 16px/1.5 $font-regular;
-  color: $color-regular;
+  font: 300 16px/1.5 $font-regular;
+  color: #ddd;
+  background: #222;
 }
 
 a {
