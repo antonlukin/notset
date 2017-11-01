@@ -1,7 +1,12 @@
 .header {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items:center;
+
+  width: 100%;
+  height: 4rem;
 
   .header__link {
     display: block;
@@ -11,11 +16,15 @@
 
   .header__icon {
     display: block;
-    fill: #333;
+    fill: #444;
     transition: .3s;
 
     &:hover {
       fill: $color-links;
     }
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 3.5rem;
   }
 }

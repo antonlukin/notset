@@ -1,0 +1,62 @@
+.custom {
+  width: 52rem;
+
+  .custom__header {
+    display: block;
+
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    font-size: .875rem;
+    text-align: center;
+
+    border-bottom: solid 1px #aaa;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    margin-top: 3rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: .5rem 0;
+  }
+
+  code {
+   	display:block;
+	background:#000;
+	padding:8px;
+	padding-left:15px;
+	border-left:4px solid #1f8dd6;
+	color:#eee;
+	margin:15px 0;
+	font-size:.9em;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+	font-family:monospace;
+	max-height:250px;
+	overflow-y: auto;
+
+    &:before {
+
+	content:"user@server:~> ";
+	color:#48b5ff;
+
+    }
+  }
+code.root:before{
+	content:"root@server:~# ";
+}
+code.mysql:before{
+	content:"mysql> ";
+}
+code.no:before{
+	content:"";
+}
+}

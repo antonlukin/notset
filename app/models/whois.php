@@ -7,7 +7,7 @@
  *
  * @copyright   Copyright (c) 2017, Anton Lukin <anton@lukin.me>
  * @license     MIT, https://github.com/antonlukin/notset/LICENSE
- * @version		1.0
+ * @version     1.0
  */
 
 namespace notset\models;
@@ -15,8 +15,11 @@ namespace notset\models;
 use Flight as app;
 
 class whois {
+	public function render() {
+		$args = [
+			"ip" => app::request()->ip
+		];
 
-	public function render($route) {
-		echo '123';
+		return app::render("whois", $args);
 	}
 }

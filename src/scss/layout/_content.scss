@@ -1,0 +1,19 @@
+.content {
+  display: block;
+  position: relative;
+
+  max-width: 100%;
+
+  .content__heading {
+    display: block;
+    position: relative;
+    cursor: default;
+
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  &.content--push {
+    padding-bottom: 10%;
+  }
+}
