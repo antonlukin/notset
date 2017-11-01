@@ -20,4 +20,4 @@ https://github.com/antonlukin/notsetissues
 
 ### Useful notes ###
 
-This project works on fast, simple, extensible framework for PHP [Flight](https://github.com/mikecao/flight)
+This project works on [Flight](https://github.com/mikecao/flight): fast, simple, extensible framework for PHP
