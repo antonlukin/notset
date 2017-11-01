@@ -1,7 +1,4 @@
 $color-links: #7bd;
-$color-links-opacity: #7bd;
-$color-hover: rgba(204, 60, 46, 1);
-$color-hover-opacity: rgba(204, 60, 46, 0.4);
 $color-regular: #ddd;
 
 $font-regular: "Ubuntu", sans-serif;
@@ -20,19 +17,19 @@ body {
 
 a {
   color: $color-links;
-  border-bottom: solid 1px $color-links-opacity;
+  border-bottom: solid 1px $color-links;
   text-decoration: none;
 
-  transition: .4s;
+  transition: .25s;
 
   &:hover {
-    color: $color-hover;
-    border-color: $color-hover-opacity;
+    border-color: transparent;
   }
 }
 
 button {
   background-color: transparent;
+  border-color: transparent;
 }
 
 ::selection {

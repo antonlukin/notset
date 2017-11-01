@@ -10,7 +10,7 @@ var order      = require('gulp-order');
 
 var path = {
 	source: 'src/',
-	assets: 'app/assets/'
+	assets: 'public/assets/'
 }
 
 gulp.task('scss', function() {

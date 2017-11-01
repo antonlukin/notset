@@ -1,0 +1,21 @@
+.header {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+
+  .header__link {
+    display: block;
+
+    border-bottom: none;
+  }
+
+  .header__icon {
+    display: block;
+    fill: #333;
+    transition: .3s;
+
+    &:hover {
+      fill: $color-links;
+    }
+  }
+}
