@@ -16,7 +16,7 @@ Feel free to inspire or clone this repo for your needs.
 
 You can ask your question or send pull request on Github
 
-https://github.com/antonlukin/notsetissues
+https://github.com/antonlukin/notset/issues
 
 ### Useful notes ###
 
