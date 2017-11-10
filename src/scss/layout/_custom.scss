@@ -1,28 +1,46 @@
 .custom {
   width: 52rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
 
-  .custom__header {
-    display: block;
+  color: black;
+  background-color: white;
 
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    font-size: .875rem;
-    text-align: center;
-
-    border-bottom: solid 1px #aaa;
-  }
+  border-radius: 3px;
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
   }
 
   h2 {
-    margin-top: 3rem;
     font-size: 1.5rem;
   }
 
   p {
-    margin: .5rem 0;
+    margin: .75rem 0;
+  }
+
+  hr {
+    display: block;
+    position: relative;
+
+    width: 3rem;
+    height: 0;
+    margin: 3rem auto;
+
+    background: transparent;
+    border: none;
+    border-top: dotted .625rem black;
+  }
+
+  ul {
+    margin-left: 2rem;
+
+    li {
+      margin: .5rem 0;
+      list-style: disc;
+    }
   }
 
   code {

@@ -24,13 +24,7 @@
 	</header>
 
 	<article class="content custom">
-		<header class="custom__header">
-			<h1>Настройка Ubuntu Server</h1>
-
-			<p>Всё самое необходимое сразу после установки Ubuntu Server</p>
-		</header>
-
-		<h2>Создание пользователя</h2>
+		<h1>Настройка Ubuntu Server</h1>
 		<p>
 			На данном этапе предполагается, что у вас установлен чистый дистрибутив Ubuntu Server старше 11.04. Все команды ниже гарантировано работают в версии 12.04.
 		</p>
@@ -66,8 +60,9 @@
 			В большинстве случаев, можете оставить все по умолчанию.
 		</p>
 
+		<hr>
 
-		<h2>Настройка инфраструктуры</h2>
+		<h1>Установка окружения</h1>
 		<p>
 			Следующим шагом обновим информацию о пакетах и установим кое-что:
 			<code class="root">apt-get update &amp;&amp; apt-get install language-pack-ru language-pack-ru-base aptitude build-essential zlib1g-dev zsh git-core vim screen ctags curl zip unzip</code>

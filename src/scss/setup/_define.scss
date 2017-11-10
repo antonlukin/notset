@@ -1,5 +1,7 @@
 $color-links: #7bd;
 $color-regular: #ddd;
+$color-backdrop: #222;
+$color-bright: #995c8e;
 
 $font-regular: "Ubuntu", sans-serif;
 $font-monospace: "Ubuntu Mono", monospace;
@@ -11,13 +13,8 @@ body {
   width: 100%;
 
   font: 300 16px/1.5 $font-regular;
-  color: #ddd;
-  background: #222;
-
-  &.body--light {
-    background: #fff;
-    color: #111;
-  }
+  color: $color-regular;
+  background: $color-backdrop;
 }
 
 a {
