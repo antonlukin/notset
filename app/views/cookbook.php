@@ -53,8 +53,7 @@
 
 			Чтобы настроить имя хоста, используйте файлы
 			<code class="no">/etc/hosts
-			/etc/hostname
-			</code>
+/etc/hostname</code>
 
 			А также команду <em>hostname</em>.
 			В большинстве случаев, можете оставить все по умолчанию.
@@ -92,13 +91,7 @@
 		</p>
 		<p>
 			Перейдем в домашний каталог и установим пакет конфигураций <em>homedir</em>:
-
-			<code>cd ~
-			wget http://workenv.notset.ru/workenv.zip
-			unzip workenv.zip
-			cd workenv
-			./install
-			</code>
+			<code>cd ~ &amp;&amp; wget https://notset.ru/workenv.zip &amp;&amp; unzip workenv.zip &amp;&amp; ./workenv/install</code>
 		</p>
 		<p>
 			Сменим командную оболочку на <em>/bin/zsh</em> командой
