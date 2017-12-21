@@ -23,7 +23,7 @@ class search {
 		$query = app::request()->query;
 
 		if(!isset($query->q))
-			return $this->promo();
+			return app::render('search');
 
 		if(isset($query->tld) && preg_match("~^[a-z0-9|]+$~i", $query->tld))
 			$this->tld = $query->tld;
@@ -31,11 +31,7 @@ class search {
 		return $this->request($query->q);
 	}
 
-	public function promo() {
-		return app::render('search');
-	}
-
-	public function request($query) {
+	private function request($query) {
 		if(preg_match("~^[a-z0-9-.]+\.({$this->tld})(/[^\s]*)?$~i", $query))
 			return app::redirect("http://" . $query);
 

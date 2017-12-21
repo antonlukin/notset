@@ -20,6 +20,53 @@ class whois {
 			"ip" => app::request()->ip
 		];
 
+//		echo $this->lookup("https://lukin.blog/?fds");
+
 		return app::render("whois", $args);
+	}
+
+	private function lookup($url) {
+		$host = parse_url($url, PHP_URL_HOST);
+		$server = $this->server($host);
+
+		if($server === null)
+			return ;
+
+		$data = '';
+
+		$socket = fsockopen($server, 43);
+		fputs($socket, "$host\r\n");
+
+		while(!feof($socket)) {
+			$data .= fgets($socket, 128);
+		}
+
+		fclose($socket);
+
+		echo $data;
+	}
+
+	private function server($host, $server = null) {
+		if(!file_exists(app::get('app.data') . "/whois.json"))
+			return $server;
+
+		$servers = json_decode(file_get_contents(app::get('app.data') . "/whois.json"), true);
+
+		if(json_last_error() !== JSON_ERROR_NONE)
+			return $server;
+
+		for($i = 0; $i <= substr_count($host, "."); $i++) {
+			$part = substr($host, strpos($host, ".") + 1);
+
+			if(array_key_exists($part, $servers)) {
+				$server = $servers[$part];
+
+				break;
+			}
+
+			$host = $part;
+		}
+
+		return $server['host'];
 	}
 }

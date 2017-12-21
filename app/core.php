@@ -12,12 +12,32 @@
 
 
 /**
- * Set required options
+ * Set required framework options
  *
  * @since 2.0
- *
  */
 Flight::set('flight.views.path', __DIR__ . "/views");
+
+
+/**
+ * Set application options
+ *
+ * @since 2.0
+ */
+Flight::set('app.data', __DIR__ . "/data");
+
+
+/**
+ * We have to reconfigure default error handler
+ *
+ * @since 2.0
+ */
+/*
+Flight::map('error', function(Exception $ex) {
+	echo $ex->getTraceAsString();
+});
+*/
+
 
 /**
  * Route index page as whois
