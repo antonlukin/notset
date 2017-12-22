@@ -23,15 +23,9 @@
 		</header>
 
 		<article class="content content--push">
-			<form class="content__form" action="/whois/" method="get">
-				<input class="content__form-input" name="q" value="<?php echo $ip; ?>" placeholder="Enter any url or ip address">
-
-				<span class="content__form-bars"></span>
-			</form>
-
-			<div class="content__data">
-				<pre><?php echo $data; ?></pre>
-			</div>
+			<a class="content__link" href="/whois/?q=<?php echo $ip; ?>">
+				<span href=""><?php echo $ip; ?></span>
+			</a>
 		</article>
 
 		<footer class="footer">

@@ -8,6 +8,7 @@
 	<title>cookbook › notset services</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 	<link href="https://lukin.nyc3.digitaloceanspaces.com/notset/favicon.png" rel="icon" type="image/png">
 	<link rel="stylesheet" href="/assets/styles.min.css" type="text/css" media="all" />
 
@@ -23,7 +24,7 @@
 		</a>
 	</header>
 
-	<article class="content custom">
+	<article class="content content--shrink custom">
 		<h1>Настройка Ubuntu Server</h1>
 		<p>
 			На данном этапе предполагается, что у вас установлен чистый дистрибутив Ubuntu Server старше 11.04. Все команды ниже гарантировано работают в версии 12.04.

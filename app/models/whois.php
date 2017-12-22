@@ -17,25 +17,30 @@ use Flight as app;
 class whois {
 	public function render() {
 		$args = [
-			"ip" => app::request()->ip
+			'ip' => app::request()->ip,
+			'data' => ''
 		];
 
-//		echo $this->lookup("https://lukin.blog/?fds");
+
+        if(!isset(app::request()->query->q))
+			return app::render("whois", $args);
+
+		$query = app::request()->query->q;
+
+		if(filter_var($query, FILTER_VALIDATE_URL))
+			$args['data'] = $this->lookup(parse_url($query, PHP_URL_HOST));
 
 		return app::render("whois", $args);
 	}
 
-	private function lookup($url) {
-		$host = parse_url($url, PHP_URL_HOST);
-		$server = $this->server($host);
+	private function lookup($host, $data = '') {
+		list($server, $domain) = $this->server($host);
 
 		if($server === null)
 			return ;
 
-		$data = '';
-
 		$socket = fsockopen($server, 43);
-		fputs($socket, "$host\r\n");
+		fputs($socket, "$domain\r\n");
 
 		while(!feof($socket)) {
 			$data .= fgets($socket, 128);
@@ -43,7 +48,7 @@ class whois {
 
 		fclose($socket);
 
-		echo $data;
+		return $data;
 	}
 
 	private function server($host, $server = null) {
@@ -59,7 +64,7 @@ class whois {
 			$part = substr($host, strpos($host, ".") + 1);
 
 			if(array_key_exists($part, $servers)) {
-				$server = $servers[$part];
+				$server = $servers[$part]['host'];
 
 				break;
 			}
@@ -67,6 +72,6 @@ class whois {
 			$host = $part;
 		}
 
-		return $server['host'];
+		return [$server, $host];
 	}
 }
