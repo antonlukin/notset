@@ -23,9 +23,7 @@
 		</header>
 
 		<article class="content content--push">
-			<a class="content__link" href="/whois/?q=<?php echo $ip; ?>">
-				<span href=""><?php echo $ip; ?></span>
-			</a>
+			<a class="content__link" href="/whois/?q=<?php echo $ip; ?>"><?php echo $ip; ?></a>
 		</article>
 
 		<footer class="footer">

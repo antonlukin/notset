@@ -15,7 +15,7 @@
 	<meta name="theme-color" content="#222222">
 </head>
 
-<body class="body--light">
+<body>
 
 <section class="wrap">
 	<header class="header">
@@ -32,40 +32,38 @@
 
 		<p>
 			Для начала необходимо добавить пользователя, от имени которого вы будете работать в дальнейшем на сервере. Делается это командой:
-			<code class="root">adduser login</code>
+			<code class="code code--root">adduser login</code>
 			Здесь login ваше имя пользователя. На всех своих серверах я использую логин master.
 		</p>
 		<p>
 			Я предпочитаю сразу же убрать необходимость ввода пароля при каждом запуске команды через sudo.
 			Однако не советую этого делать всем и везде, так как это несомненно ударит по безопасности:
-			<code class="root">visudo</code>
+			<code class="code code--root">visudo</code>
 			Находим строку, которая начинается с <em>%sudo</em> и заменяем ее на:
-			<code class="no">%sudo ALL=(ALL) NOPASSWD: ALL</code>
+			<code class="code">%sudo ALL=(ALL) NOPASSWD: ALL</code>
 		</p>
 		<p>
 			Открываем файл групповой политки любым редактором. Если вы не знакомы с vim, то лучше будет использовать интуитивный nano:
-			<code class="root">nano /etc/group</code>
+			<code class="code code--root">nano /etc/group</code>
 			Напротив строчки sudo должен быть ваш логин. Добавьте его, если это не так.
 		</p>
 		<p>
 			Теперь можно залогиниться под новым пользователем.
 			На время настройки, перейдем в режим администратора:
-			<code>sudo -s</code>
+			<code class="code code--user">sudo -s</code>
 
 			Чтобы настроить имя хоста, используйте файлы
-			<code class="no">/etc/hosts
+			<code class="code">/etc/hosts
 /etc/hostname</code>
 
 			А также команду <em>hostname</em>.
 			В большинстве случаев, можете оставить все по умолчанию.
 		</p>
 
-		<hr>
-
 		<h1>Установка окружения</h1>
 		<p>
 			Следующим шагом обновим информацию о пакетах и установим кое-что:
-			<code class="root">apt-get update &amp;&amp; apt-get install language-pack-ru language-pack-ru-base aptitude build-essential zlib1g-dev zsh git-core vim screen ctags curl zip unzip</code>
+			<code class="code code--root">apt-get update &amp;&amp; apt-get install language-pack-ru language-pack-ru-base aptitude build-essential zlib1g-dev zsh git-core vim screen ctags curl zip unzip</code>
 			Таким образом будут установлены:
 			<ul>
 				<li><b>language-pack-ru language-pack-ru-base</b> — поддержка русского языка</li>
@@ -85,24 +83,24 @@
 		</p>
 		<p>
 			Если сервер находится не в вашем часовом поясе, то удобнее будет настроить на нем ваше локальное время. Делается это командой:
-			<code class="root">dpkg-reconfigure tzdata</code>
+			<code class="code code--root">dpkg-reconfigure tzdata</code>
 
 		<p>
 			Далее мы будем настраивать рабочее окружение пользователя, поэтому нужно выйти из режима администратора командой <em>exit</em>.
 		</p>
 		<p>
 			Перейдем в домашний каталог и установим пакет конфигураций <em>homedir</em>:
-			<code>cd ~ &amp;&amp; wget https://notset.ru/workenv.zip &amp;&amp; unzip workenv.zip &amp;&amp; ./workenv/install</code>
+			<code class="code code--user">cd ~ &amp;&amp; wget https://notset.ru/workenv.zip &amp;&amp; unzip workenv.zip &amp;&amp; ./workenv/install</code>
 		</p>
 		<p>
 			Сменим командную оболочку на <em>/bin/zsh</em> командой
 
-			<code>chsh</code>
+			<code class="code code--user">chsh</code>
 		</p>
 		<p>
 			Теперь необходимо перелогиниться, для применения изменений. Если zsh предложит провести предварительную настройку. Проще всего будет нажать q для выхода.
 			Удаляем уже не нужные архивы:
-			<code>rm -r ~/workenv*</code>
+			<code class="code code--user">rm -r ~/workenv*</code>
 
 			Если все установлено верно, некоторые элементы строки станут цветными.
 		</p>

@@ -5,9 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Modern and convenient lookup service">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>notset services</title>
+	<title>whois › notset services</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 	<link href="https://lukin.nyc3.digitaloceanspaces.com/notset/favicon.png" rel="icon" type="image/png">
 	<link rel="stylesheet" href="/assets/styles.min.css" type="text/css" media="all" />
 
@@ -22,16 +23,23 @@
 			</a>
 		</header>
 
-		<article class="content content--push">
-			<form class="content__form" action="/whois/" method="get">
-				<input class="content__form-input" name="q" value="<?php echo $ip; ?>" placeholder="Enter any url or ip address">
+		<article class="content <?php echo empty($reply) ? 'fieldset fieldset--blank' : 'fieldset'; ?>">
 
-				<span class="content__form-bars"></span>
+			<form class="fieldset__form" action="/whois/" method="get">
+				<input class="fieldset__form-input" name="q" value="<?php echo $query; ?>" placeholder="Enter any url or ip address" autofocus>
+				<button class="fieldset__form-button" role="button">Send</button>
 			</form>
 
-			<div class="content__data">
-				<pre><?php echo $data; ?></pre>
+ 		<?php if(isset($reply) && is_string($reply)) : ?>
+			<div class="fieldset__data">
+				<code class="fieldset__data-code code"><?php echo $reply; ?></code>
 			</div>
+		<?php endif; ?>
+
+		<?php if(isset($error) && is_string($error)) : ?>
+			<div class="fieldset__error"><?php echo $error; ?></div>
+		<?php endif; ?>
+
 		</article>
 
 		<footer class="footer">

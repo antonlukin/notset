@@ -1,0 +1,101 @@
+.fieldset {
+  width: 36rem;
+  padding: 2rem;
+
+	margin-bottom: auto;
+
+  color: black;
+  background-color: $color-field;
+
+  border-radius: 3px;
+
+  .fieldset__error {
+    display: block;
+
+    margin-top: 1.75rem;
+
+    font-size: .875rem;
+    color: $color-error;
+    text-align: center;
+
+    @media screen and (max-width: 767px) {
+      margin-top: 1rem
+    }
+  }
+
+	.fieldset__data {
+		display: block;
+		position: relative;
+
+		margin-top: 1.5rem;
+
+		.fieldset__data-code {
+			width: 100%;
+			height: 26rem;
+			max-height: 26rem;
+		}
+	}
+
+  .fieldset__form {
+    display: block;
+    position: relative;
+
+		width: 100%;
+
+    .fieldset__form-input {
+      display: block;
+      outline: none;
+
+      width: 100%;
+      padding: .625rem 3.25rem .625rem .75rem;
+
+      font-size: 1.375rem;
+
+			background-color: white;
+
+      border: solid 1px rgba(0, 0, 0, .2);
+      border-radius: 3px;
+
+      transition: .25s;
+    }
+
+    .fieldset__form-button {
+			display: block;
+			position: absolute;
+			top: 50%;
+			right: 0;
+			cursor: pointer;
+			visibility: hidden;
+			outline: none;
+
+			opacity: 0;
+
+			width: 2rem;
+			height: 2rem;
+			margin-top: -1rem;
+			margin-right: .75rem;
+			text-indent: -9999rem;
+
+			background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABtUlEQVR4Xu3awUoDMRAG4ElQQb00272KLyWC9CiCfRpB8OAjCCL6SuJ1Ys+l3ZGFHlRYDyWT+WOy9w35v8wsmxBHlT+u8vzUAFoFVC7QWqDyAmgfwdYCrQUqF9BugXF8QTZWA+i67noQufPer0nkNsb4jAihBXA0C2HlvT/ehd6SyCLG+ISGoAnw6b0/+RYYEkELgLq+vyGRR6If/xpwCGoA48qH+XzpiB6QEVQBSkBQB0BHyAKAjJANABUhKwAiQnYANAQTACQEMwAUBFMABARzAGsECABLBBgAKwQoAAsEOIC/EBzRJTO/pDxUgQSYQhiIPlbMZ9UCENF7ZD7/9wATBykbR3TBzG//GmAqPIlcaZwsQ30DcocfKwkGwCI8DIBVeAgAy/DmANbhTQEQwpsBoIQ3AUAKnx0ALXxWAMTw2QBQw2cBQA6vDoAeXhVg4oLERmtXt+8WWWsz9PuO0Dg/uPCaFXA4C2G8I3S6WxnI8JoAFPp+4UTut8OwPvB+ycyv+5ap5ntaLaA556RjN4CknAUO1iqgwEVLOuVWAUk5CxysVUCBi5Z0yq0CknIWOFj1FfAFYrpCUDZGAOAAAAAASUVORK5CYII=');
+			background-size: 2rem 2rem;
+			background-position: center center;
+			background-repeat: no-repeat;
+
+			transition: opacity .5s;
+    }
+
+		.fieldset__form-input:not(:placeholder-shown) + .fieldset__form-button {
+			visibility: visible;
+
+			opacity: 1;
+		}
+  }
+
+	&.fieldset--blank {
+		margin-top: 12%;
+	}
+
+	@media screen and (max-width: 767px) {
+		padding: 1rem;
+	}
+}

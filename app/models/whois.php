@@ -16,31 +16,37 @@ use Flight as app;
 
 class whois {
 	public function render() {
-		$args = [
-			'ip' => app::request()->ip,
-			'data' => ''
-		];
+		$query = app::request()->query;
 
+		if(empty($query->q))
+			return app::render('whois', ['query' => '']);
 
-        if(!isset(app::request()->query->q))
-			return app::render("whois", $args);
+		if(filter_var($query->q, FILTER_VALIDATE_IP))
+			return app::render('whois', $this->detect($query->q));
 
-		$query = app::request()->query->q;
-
-		if(filter_var($query, FILTER_VALIDATE_URL))
-			$args['data'] = $this->lookup(parse_url($query, PHP_URL_HOST));
-
-		return app::render("whois", $args);
+		return app::render('whois', $this->lookup($query->q));
 	}
 
-	private function lookup($host, $data = '') {
+	private function detect($query) {
+		return [
+			'query' => $query,
+			'error' => "Sorry, we can't process your request"
+		];
+	}
+
+	private function lookup($query, $data = '') {
+		return [
+			'query' => $query,
+			'error' => "Sorry, we can't process your request"
+		];
+
 		list($server, $domain) = $this->server($host);
 
 		if($server === null)
 			return ;
 
 		$socket = fsockopen($server, 43);
-		fputs($socket, "$domain\r\n");
+		fputs($socket, $domain . '\r\n');
 
 		while(!feof($socket)) {
 			$data .= fgets($socket, 128);
@@ -52,16 +58,16 @@ class whois {
 	}
 
 	private function server($host, $server = null) {
-		if(!file_exists(app::get('app.data') . "/whois.json"))
+		if(!file_exists(app::get('app.data') . '/whois.json'))
 			return $server;
 
-		$servers = json_decode(file_get_contents(app::get('app.data') . "/whois.json"), true);
+		$servers = json_decode(file_get_contents(app::get('app.data') . '/whois.json'), true);
 
 		if(json_last_error() !== JSON_ERROR_NONE)
 			return $server;
 
-		for($i = 0; $i <= substr_count($host, "."); $i++) {
-			$part = substr($host, strpos($host, ".") + 1);
+		for($i = 0; $i <= substr_count($host, '.'); $i++) {
+			$part = substr($host, strpos($host, '.') + 1);
 
 			if(array_key_exists($part, $servers)) {
 				$server = $servers[$part]['host'];

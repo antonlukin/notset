@@ -16,13 +16,13 @@ use Flight as app;
 
 
 class search {
-	public $tld = "test|local|example|invalid";
-	public $cse = "https://www.google.com/search?q=";
+	public $tld = 'test|local|example|invalid';
+	public $cse = 'https://www.google.com/search?q=';
 
 	public function render() {
 		$query = app::request()->query;
 
-		if(!isset($query->q))
+		if(empty($query->q))
 			return app::render('search');
 
 		if(isset($query->tld) && preg_match("~^[a-z0-9|]+$~i", $query->tld))
@@ -33,7 +33,7 @@ class search {
 
 	private function request($query) {
 		if(preg_match("~^[a-z0-9-.]+\.({$this->tld})(/[^\s]*)?$~i", $query))
-			return app::redirect("http://" . $query);
+			return app::redirect('http://' . $query);
 
 		return app::redirect($this->cse . $query);
 	}
