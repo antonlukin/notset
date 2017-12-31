@@ -28,9 +28,18 @@ class whois {
 	}
 
 	private function detect($query) {
+        $check = 'https://freegeoip.net/json/' . $query;
+		$reply = json_decode(file_get_contents($check), true);
+
+		if(json_last_error() !== JSON_ERROR_NONE)
+			return [
+				'query' => $query,
+				'error' => "Can't fetch ip data. Please try later"
+			];
+
 		return [
 			'query' => $query,
-			'error' => "Sorry, we can't process your request"
+			'reply' => json_encode($reply, JSON_PRETTY_PRINT)
 		];
 	}
 
