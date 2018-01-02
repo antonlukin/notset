@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Modern and convenient lookup service">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>notset services</title>
+	<title>404 › notset services</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400" rel="stylesheet">
 	<link href="https://lukin.nyc3.digitaloceanspaces.com/notset/favicon.png" rel="icon" type="image/png">
@@ -22,12 +22,12 @@
 			</a>
 		</header>
 
-		<article class="content content--push">
-			<a class="content__link" href="/whois/?q=<?php echo $ip; ?>"><?php echo $ip; ?></a>
+		<article class="content">
+			<p class="caption">The requested file was not found on the web server</p>
 		</article>
 
 		<footer class="footer">
-			<span class="footer__copy">2017 &ndash;&nbsp;<a class="footer__link" href="https://lukin.me/ask/#/notset.ru">Anton Lukin</a></span>
+			<span class="footer__copy">2018 &ndash;&nbsp;<a class="footer__link" href="https://lukin.me/ask/#/notset.ru">Anton Lukin</a></span>
 		</footer>
 	</section>
 </body>

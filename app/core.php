@@ -38,22 +38,17 @@ Flight::map('error', function(Exception $ex) {
 });
 */
 
+Flight::map('notFound', function() {
+	Flight::render('404');
+});
+
 
 /**
- * Route index page
+ * Route index page - ip and domains lookup
  *
  * @since 2.0
  */
 Flight::route("/", [
-	(new notset\models\home), 'render'
-], true);
-
-/**
- * Route whois - ip and domains lookup
- *
- * @since 2.0
- */
-Flight::route("/whois/", [
 	(new notset\models\whois), 'render'
 ], true);
 
