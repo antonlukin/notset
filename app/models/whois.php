@@ -28,7 +28,7 @@ class whois {
 	}
 
 	private function detect($query) {
-        $check = 'http://ip-api.com/json/' . $query;
+		$check = 'http://ip-api.com/json/' . $query;
 		$reply = json_decode(file_get_contents($check), true);
 
 		if(json_last_error() !== JSON_ERROR_NONE)

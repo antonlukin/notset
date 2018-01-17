@@ -1,0 +1,33 @@
+.user-output {
+  p {
+    display: block;
+
+    margin: 0 0 .5rem;
+    white-space: pre-wrap;
+  }
+
+  ul {
+    display: block;
+
+    margin: 0 0 .5rem;
+
+    li {
+      display: block;
+
+      margin-left: 1rem;
+      white-space: pre-wrap;
+
+      &:before {
+        content: "*";
+
+        padding-right: .5rem;
+      }
+    }
+  }
+
+  code {
+    display: block;
+
+    white-space: pre-wrap;
+  }
+}

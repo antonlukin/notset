@@ -1,11 +1,8 @@
 @import "setup/reset";
 @import "setup/define";
 
-@import "layout/wrap";
-@import "layout/code";
-@import "layout/content";
-@import "layout/header";
-@import "layout/custom";
-@import "layout/footer";
-@import "layout/fieldset";
-@import "layout/caption";
+@import "form/banner";
+@import "form/terminal";
+
+@import "user/output";
+@import "user/input";

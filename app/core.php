@@ -54,16 +54,6 @@ Flight::route("/", [
 
 
 /**
- * Route cookbook - sysadmin advices
- *
- * @since 2.0
- */
-Flight::route("/cookbook/", [
-	(new notset\models\cookbook), 'render'
-], true);
-
-
-/**
  * Route custom search
  *
  * @since 2.0
