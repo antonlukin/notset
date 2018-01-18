@@ -25,6 +25,19 @@
     }
   }
 
+  ol {
+    display: block;
+
+    margin: 0 0 .5rem;
+
+    li {
+      display: block;
+
+      margin-left: 1rem;
+      white-space: pre-wrap;
+    }
+  }
+
   code {
     display: block;
 

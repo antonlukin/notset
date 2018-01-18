@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Modern and convenient lookup service">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>404 › notset services</title>
+	<title>page not found › notset services</title>
 
  	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 	<link href="https://lukin.nyc3.digitaloceanspaces.com/notset/favicon.png" rel="icon" type="image/png">
