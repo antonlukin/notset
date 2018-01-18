@@ -3,7 +3,7 @@
  * notset tools
  *
  * Simple personal project providing whois service,
- * cookbook manual, custom search and something more
+ * custom search and something more
  *
  * @copyright   Copyright (c) 2017, Anton Lukin <anton@lukin.me>
  * @license     MIT, https://github.com/antonlukin/notset/LICENSE
