@@ -16,8 +16,8 @@
 
 <body>
 	<section class="form-banner user-output">
-		<p>Page not found</p>
-		<p>Please navigate to the main page <a href="https://notset.ru/">https://notset.ru/</a></p>
+		<p>Server internal error</p>
+		<p>Can't process your request at this time. Please try later</p>
 	</section>
 </body>
 </html>

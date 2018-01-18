@@ -24,7 +24,7 @@
 			<li>Author:        Anton Lukin</li>
  			<li>Author URI:    <a href="https://lukin.me">https://lukin.me</a></li>
 			<li>Description:   Modern and convenient lookup service</li>
-			<li>Project URI:   <a href="https://lukin.me">https://github.com/antonlukin/notset</a></li>
+			<li>Project URI:   <a href="https://github.com/antonlukin/notset">https://github.com/antonlukin/notset</a></li>
 		</ul>
 
  		<p>Enter the domain or IP you wish to get whois information</p>
@@ -37,7 +37,7 @@
 		<input type="submit" tabindex="-1">
 	</form>
 
-<?php if(isset($reply) && is_string($reply)) : ?>
+<?php if(isset($reply)) : ?>
 	<section class="form-response user-output">
 		<code><?php echo $reply; ?></code>
 	</section>

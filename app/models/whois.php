@@ -19,7 +19,7 @@ class whois {
 		$query = app::request()->query;
 
 		if(empty($query->q))
-			return app::render('whois', ['query' => '']);
+			return app::render('whois', ['query' => app::request()->ip]);
 
 		if(filter_var($query->q, FILTER_VALIDATE_IP))
 			return app::render('whois', $this->detect($query->q));
@@ -32,30 +32,24 @@ class whois {
 		$reply = json_decode(file_get_contents($check), true);
 
 		if(json_last_error() !== JSON_ERROR_NONE)
-			return [
-				'query' => $query,
-				'error' => "Can't fetch ip data. Please try later"
-			];
+			return ['query' => $query, 'reply' => "Error: can't fetch ip data. Please try later"];
 
-		return [
-			'query' => $query,
-			'reply' => json_encode($reply, JSON_PRETTY_PRINT)
-		];
+		return ['query' => $query, 'reply' => json_encode($reply, JSON_PRETTY_PRINT)];
 	}
 
 	private function lookup($query, $data = '') {
-		return [
-			'query' => $query,
-			'error' => "Sorry, we can't process your request"
-		];
+		$link = (strpos($query, '://') === false) ? 'http://' . $query : $query;
 
-		list($server, $domain) = $this->server($host);
+		list($server, $domain) = $this->server(parse_url($link, PHP_URL_HOST));
 
 		if($server === null)
-			return ;
+			return ['query' => $query, 'reply' => "Error: can't find related whois server"];
 
-		$socket = fsockopen($server, 43);
-		fputs($socket, $domain . '\r\n');
+		$socket = fsockopen($server, 43, $errno, $errstr, 10);
+		if (!$socket)
+			return ['query' => $query, 'reply' => "Error: whois server is unreachable"];
+
+		fputs($socket, $domain . "\r\n");
 
 		while(!feof($socket)) {
 			$data .= fgets($socket, 128);
@@ -63,7 +57,7 @@ class whois {
 
 		fclose($socket);
 
-		return $data;
+		return ['query' => $query, 'reply' => $data];
 	}
 
 	private function server($host, $server = null) {

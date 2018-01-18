@@ -32,11 +32,10 @@ Flight::set('app.data', __DIR__ . "/data");
  *
  * @since 2.0
  */
-/*
 Flight::map('error', function(Exception $ex) {
-	echo $ex->getTraceAsString();
+	Flight::render('500');
 });
-*/
+
 
 Flight::map('notFound', function() {
 	Flight::render('404');
