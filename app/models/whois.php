@@ -38,7 +38,7 @@ class whois {
 	}
 
 	private function lookup($query, $data = '') {
-		$link = (strpos($query, '://') === false) ? 'http://' . $query : $query;
+		$link = (strpos($query, '://') === false) ? '//' . strtolower($query) : strtolower($query);
 
 		list($server, $domain) = $this->server(parse_url($link, PHP_URL_HOST));
 
