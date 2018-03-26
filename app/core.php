@@ -7,7 +7,7 @@
  *
  * @copyright   Copyright (c) 2017, Anton Lukin <anton@lukin.me>
  * @license     MIT, https://github.com/antonlukin/notset/LICENSE
- * @version     2.0
+ * @version     2.1
  */
 
 
@@ -36,7 +36,6 @@ Flight::map('error', function(Exception $ex) {
 	Flight::render('500');
 });
 
-
 Flight::map('notFound', function() {
 	Flight::render('404');
 });
@@ -59,6 +58,16 @@ Flight::route("/", [
  */
 Flight::route("/cs/", [
 	(new notset\models\search), 'render'
+], true);
+
+
+/**
+ * Route custom search
+ *
+ * @since 2.1
+ */
+Flight::route("/e/", [
+	(new notset\models\notepad), 'render'
 ], true);
 
 

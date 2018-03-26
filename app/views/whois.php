@@ -19,7 +19,7 @@
 		<p>Welcome to whois search service for domain names and IP address</p>
 
 		<ul>
-			<li>Version:       2.0</li>
+			<li>Version:       2.1</li>
 			<li>License:       MIT</li>
 			<li>Author:        Anton Lukin</li>
  			<li>Author URI:    <a href="https://lukin.me">https://lukin.me</a></li>

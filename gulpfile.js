@@ -1,12 +1,13 @@
-var gulp       = require('gulp');
-var sass       = require('gulp-sass');
-var concat     = require('gulp-concat');
-var minifyCss  = require('gulp-minify-css');
-var uglify     = require('gulp-uglify');
-var plumber    = require('gulp-plumber');
-var flatten    = require('gulp-flatten');
-var prefix     = require('gulp-autoprefixer');
-var order      = require('gulp-order');
+var gulp		= require('gulp');
+var sass		= require('gulp-sass');
+var concat		= require('gulp-concat');
+var minify		= require('gulp-minify-css');
+var uglify		= require('gulp-uglify');
+var plumber		= require('gulp-plumber');
+var flatten		= require('gulp-flatten');
+var prefix		= require('gulp-autoprefixer');
+var order		= require('gulp-order');
+var rename		= require('gulp-rename');
 
 var path = {
 	source: 'src/',
@@ -33,7 +34,7 @@ gulp.task('scss', function() {
 		]
 	}))
     .pipe(concat('styles.min.css'))
-    .pipe(minifyCss({
+    .pipe(minify({
         compatibility: 'ie8'
     }))
     .pipe(gulp.dest(path.assets))
@@ -43,7 +44,9 @@ gulp.task('js', function() {
 	gulp.src([path.source + '/js/*.js'])
 	.pipe(plumber())
 	.pipe(uglify())
-    .pipe(concat('scripts.min.js'))
+	.pipe(rename({
+		suffix: '.min'
+	}))
     .pipe(gulp.dest(path.assets))
 })
 
