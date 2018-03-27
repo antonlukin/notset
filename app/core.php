@@ -7,7 +7,7 @@
  *
  * @copyright   Copyright (c) 2017, Anton Lukin <anton@lukin.me>
  * @license     MIT, https://github.com/antonlukin/notset/LICENSE
- * @version     2.1
+ * @since       2.0
  */
 
 

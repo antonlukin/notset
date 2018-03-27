@@ -7,7 +7,7 @@
  *
  * @copyright   Copyright (c) 2017, Anton Lukin <anton@lukin.me>
  * @license     MIT, https://github.com/antonlukin/notset/LICENSE
- * @since		2.0
+ * @since       2.0
  */
 
 namespace notset\models;
