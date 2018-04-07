@@ -19,6 +19,13 @@
 		<textarea id="editor" autofocus spellcheck="false"></textarea>
 	</section>
 
+    <nav id="manage" class="form-tabs user-select">
+        <span class="tab">
+            <span class="tab-title">1</span>
+            <span class="tab-close"></span>
+        </span>
+    </nav>
+
 	<script src="/assets/notepad.min.js"></script>
 </body>
 </html>

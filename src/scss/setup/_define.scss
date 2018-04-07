@@ -1,6 +1,6 @@
 $color-links: #7bd;
-$color-backdrop: #000;
-$color-regular: #eee;
+$color-backdrop: #111;
+$color-regular: #ddd;
 $color-magenta: #d291e4;
 $color-cyan: #50d5e5;
 
@@ -24,7 +24,7 @@ a {
   line-height: 1.25;
   color: $color-links;
   text-decoration: none;
-  transition: .25s;
+  transition: border .25s;
 
   border-bottom: solid 1px $color-links;
 
@@ -45,4 +45,8 @@ button {
 
 ::placeholder {
   color: silver;
+}
+
+@mixin background-opacity($opacity) {
+    background-color: rgba(255, 255, 255, $opacity / 100);
 }

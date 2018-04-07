@@ -1,4 +1,5 @@
 # notset tools
+;
 
 Simple personal project providing whois service for ip and domains, custom search and something more
 

@@ -1,13 +1,13 @@
-var gulp		= require('gulp');
-var sass		= require('gulp-sass');
-var concat		= require('gulp-concat');
-var minify		= require('gulp-minify-css');
-var uglify		= require('gulp-uglify');
-var plumber		= require('gulp-plumber');
-var flatten		= require('gulp-flatten');
-var prefix		= require('gulp-autoprefixer');
-var order		= require('gulp-order');
-var rename		= require('gulp-rename');
+let gulp		= require('gulp');
+let sass		= require('gulp-sass');
+let concat		= require('gulp-concat');
+let minify		= require('gulp-minify-css');
+let uglify		= require('gulp-uglify-es').default;
+let plumber		= require('gulp-plumber');
+let flatten		= require('gulp-flatten');
+let prefix		= require('gulp-autoprefixer');
+let order		= require('gulp-order');
+let rename		= require('gulp-rename');
 
 var path = {
 	source: 'src/',
