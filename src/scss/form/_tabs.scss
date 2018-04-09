@@ -54,7 +54,7 @@
             }
         }
 
-        &.selected {
+        &.active {
             color: #aaa;
 
             @include background-opacity(12.5);

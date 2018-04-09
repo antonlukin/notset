@@ -30,7 +30,7 @@
 		if(e.altKey && e.code === 'KeyT') {
 			e.preventDefault();
 
-		    alert(1)	;
+            return createTab();
 		}
 	}, true);
 
@@ -42,7 +42,11 @@
 		if(e.altKey && e.code === 'KeyW') {
 			e.preventDefault();
 
-		    alert(1);
+            let current = manage.querySelector('.tab.active');
+
+            if(manage.querySelectorAll('.tab').length > 1 && current) {
+                return closeTab(current);
+            }
 		}
 	}, true);
 
@@ -50,8 +54,12 @@
     /**
      * Close tab on cross icon click
      */
-    manage.querySelector('.tab-close').addEventListener('click', function(e) {
-        return closeTab(this.parentNode);
+    manage.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        if(e.target.className === 'tab-close' && manage.querySelectorAll('.tab').length > 1) {
+            return closeTab(e.target.parentNode);
+        }
     }, true);
 
 
@@ -59,7 +67,20 @@
      * Create tab function
      */
     let createTab = function() {
+        // get clone element from last tab
+        let clone = manage.querySelector('.tab:last-child').cloneNode(true);
 
+        // get clone title selector
+        let title = clone.querySelector('.tab-title');
+
+        // set new tab count
+        let count = parseInt(title.textContent) + 1;
+
+        title.textContent = count;
+
+        clone.classList.add('active');
+
+        return manage.appendChild(clone);
     }
 
 
@@ -75,7 +96,7 @@
      * Close tab and delete data from local storage
      */
     let closeTab = function(tab) {
-
+        return tab.parentNode.removeChild(tab);
     }
 
 	return editor.value = localStorage.getItem('editor');
