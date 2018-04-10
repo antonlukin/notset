@@ -16,6 +16,7 @@
         justify-content: space-between;
         align-items: center;
         position: relative;
+        user-select: none;
 
         width: 7rem;
         height: 1.75rem;
@@ -46,6 +47,8 @@
         .tab-title {
             display: block;
             cursor: default;
+
+            pointer-events: none;
 
             &:before {
                 content: "\002325";
