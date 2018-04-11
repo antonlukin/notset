@@ -4,10 +4,12 @@
 
 
     /**
-    * Save current editor value to local storage
-    */
+     * Save current editor value to local storage
+     */
     editor.addEventListener('keyup', function(e) {
-        localStorage.setItem('editor', this.value);
+        let tab = manage.querySelector('.tab.active');
+
+        setContent(tab, editor.value);
     }, true);
 
 
@@ -122,7 +124,11 @@
             tabs[i].classList.remove('active');
         }
 
-       return tab.classList.add('active');
+
+        // set editor text content from registry
+        editor.value = getContent(tab);
+
+        return tab.classList.add('active');
     }
 
 
@@ -130,11 +136,76 @@
      * Close tab and delete data from local storage
      */
     let deleteTab = function(tab) {
+        deleteContent(tab);
+
         tab.parentNode.removeChild(tab);
 
         // we have to choose new tab while deleting current
+        // TODO: we should select active tab if it exists
         return selectTab(manage.querySelector('.tab:last-child'));
     }
 
-    return editor.value = localStorage.getItem('editor');
+
+    /**
+     * Load tabs from localStorage
+     */
+    let loadTabs = function() {
+        let get = JSON.parse(localStorage.getItem('registry')) || [];
+
+        for(let i = 1; i < get.length; i++) {
+            createTab();
+        }
+
+        // we want to select first tab on reload this time
+        // TODO: we should store active tab and load it here later
+        return selectTab(manage.querySelector('.tab:first-child'));
+    }
+
+
+    /**
+     * Get tab content from localStorage
+     */
+    let getContent = function(tab) {
+        let num = parseInt(tab.querySelector('.tab-title').textContent);
+
+        // get value from storage or define it
+        let get = JSON.parse(localStorage.getItem('registry')) || [];
+
+        return get[num - 1] || '';
+    }
+
+
+    /**
+     * Set tab content to localStorage
+     */
+    let setContent = function(tab, value) {
+        let num = parseInt(tab.querySelector('.tab-title').textContent);
+
+        // get value from storage or define it
+        let get = JSON.parse(localStorage.getItem('registry')) || [];
+
+        // set value to item
+        get[num - 1] = value;
+
+        return localStorage.setItem('registry', JSON.stringify(get));
+    }
+
+
+    /**
+     * Delete tab content from localStorage
+     */
+    let deleteContent = function(tab) {
+        let num = parseInt(tab.querySelector('.tab-title').textContent);
+
+        // get value from storage or define it
+        let get = JSON.parse(localStorage.getItem('registry')) || [];
+
+        // remove item from registry
+        get.splice(num - 1, 1);
+
+        return localStorage.setItem('registry', JSON.stringify(get));
+    }
+
+
+    return loadTabs();
 })();
