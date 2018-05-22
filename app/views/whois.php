@@ -31,7 +31,7 @@
 	</section>
 
 	<form class="form-terminal user-input" action="/" method="get">
-		<span><?php echo date('H:i'); ?> <b>user</b>@<i>notset</i>:/&gt;</span>
+		<span class="prompt"><?php echo date('H:i'); ?> <b>user</b>@<i>notset</i>:/&gt;</span>
 		<input type="text" name="q" value="<?php echo $query; ?>" autofocus>
 
 		<input type="submit" tabindex="-1">
