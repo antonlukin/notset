@@ -1,211 +1,211 @@
 (function(){
-    let editor = document.getElementById('editor');
-    let manage = document.getElementById('manage');
+  let editor = document.getElementById('editor');
+  let manage = document.getElementById('manage');
 
 
-    /**
-     * Save current editor value to local storage
-     */
-    editor.addEventListener('keyup', function(e) {
-        let tab = manage.querySelector('.tab.active');
+  /**
+   * Save current editor value to local storage
+   */
+  editor.addEventListener('keyup', function(e) {
+    let tab = manage.querySelector('.tab.active');
 
-        setContent(tab, editor.value);
-    }, true);
-
-
-    /**
-     * Add indetion on tab in editor
-     */
-    editor.addEventListener('keydown', function(e) {
-        if(e.code === 'Tab') {
-            e.preventDefault();
-
-            return this.value = this.value + "\t";
-        }
-    }, true);
+    setContent(tab, editor.value);
+  }, true);
 
 
-    /**
-     * Close tab on cross icon click
-     */
-    manage.addEventListener('click', function(e) {
-        e.preventDefault();
+  /**
+   * Add indetion on tab in editor
+   */
+  editor.addEventListener('keydown', function(e) {
+    if(e.code === 'Tab') {
+      e.preventDefault();
 
-        if(e.target.className === 'tab-close' && manage.querySelectorAll('.tab').length > 1) {
-            return deleteTab(e.target.parentNode);
-        }
-    }, true);
-
-
-    /**
-     * Select tab on click
-     */
-    manage.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        if(e.target.className === 'tab') {
-            return selectTab(e.target);
-        }
-    }, true);
+      return this.value = this.value + "\t";
+    }
+  }, true);
 
 
-    /**
-     * Create new tab on Alt+T shortcut
-     */
-    document.addEventListener('keydown', function(e) {
-        if(e.altKey && e.code === 'KeyT') {
-            e.preventDefault();
+  /**
+   * Close tab on cross icon click
+   */
+  manage.addEventListener('click', function(e) {
+    e.preventDefault();
 
-            return createTab();
-        }
-    }, true);
-
-
-    /**
-     * Close current tab on Alt+W shortcut
-     */
-    document.addEventListener('keydown', function(e) {
-        if(e.altKey && e.code === 'KeyW') {
-            e.preventDefault();
-
-            let tab = manage.querySelector('.tab.active');
-
-            if(manage.querySelectorAll('.tab').length > 1 && tab) {
-                return deleteTab(tab);
-            }
-        }
-    }, true);
+    if(e.target.className === 'tab-close' && manage.querySelectorAll('.tab').length > 1) {
+      return deleteTab(e.target.parentNode);
+    }
+  }, true);
 
 
-    /**
-     * Select tab using keybord shortcut
-     */
-    document.addEventListener('keydown', function(e) {
-        if(e.altKey && (e.keyCode >= 49 && e.keyCode <= 57)) {
-            e.preventDefault();
+  /**
+   * Select tab on click
+   */
+  manage.addEventListener('click', function(e) {
+    e.preventDefault();
 
-            let num = e.keyCode - 48;
-
-            // get tab by num keyCode
-            let tab = manage.querySelector('.tab:nth-child(' + num + ')');
-
-            if(tab !== null) {
-                return selectTab(tab);
-            }
-        }
-    }, true);
+    if(e.target.className === 'tab') {
+      return selectTab(e.target);
+    }
+  }, true);
 
 
-    /**
-     * Create tab function
-     */
-    let createTab = function() {
-        // get clone element from last tab
-        let clone = manage.querySelector('.tab:last-child').cloneNode(true);
+  /**
+   * Create new tab on Alt+T shortcut
+   */
+  document.addEventListener('keydown', function(e) {
+    if(e.altKey && e.code === 'KeyT') {
+      e.preventDefault();
 
-        manage.appendChild(clone);
+      return createTab();
+    }
+  }, true);
 
-        return selectTab(clone);
+
+  /**
+   * Close current tab on Alt+W shortcut
+   */
+  document.addEventListener('keydown', function(e) {
+    if(e.altKey && e.code === 'KeyW') {
+      e.preventDefault();
+
+      let tab = manage.querySelector('.tab.active');
+
+      if(manage.querySelectorAll('.tab').length > 1 && tab) {
+        return deleteTab(tab);
+      }
+    }
+  }, true);
+
+
+  /**
+   * Select tab using keybord shortcut
+   */
+  document.addEventListener('keydown', function(e) {
+    if(e.altKey && (e.keyCode >= 49 && e.keyCode <= 57)) {
+      e.preventDefault();
+
+      let num = e.keyCode - 48;
+
+      // get tab by num keyCode
+      let tab = manage.querySelector('.tab:nth-child(' + num + ')');
+
+      if(tab !== null) {
+        return selectTab(tab);
+      }
+    }
+  }, true);
+
+
+  /**
+   * Create tab function
+   */
+  let createTab = function() {
+    // get clone element from last tab
+    let clone = manage.querySelector('.tab:last-child').cloneNode(true);
+
+    manage.appendChild(clone);
+
+    return selectTab(clone);
+  }
+
+
+  /**
+   * Change editor data on tab change
+   */
+  let selectTab = function(tab) {
+    let tabs = manage.querySelectorAll('.tab');
+
+    // loop over tabs
+    for(let i = 0; i < tabs.length; ++i) {
+      // add tab number
+      tabs[i].querySelector('.tab-title').textContent = i + 1;
+
+      // remove .active class if exists
+      tabs[i].classList.remove('active');
     }
 
 
-    /**
-     * Change editor data on tab change
-     */
-    let selectTab = function(tab) {
-        let tabs = manage.querySelectorAll('.tab');
+    // set editor text content from registry
+    editor.value = getContent(tab);
 
-        // loop over tabs
-        for(let i = 0; i < tabs.length; ++i) {
-            // add tab number
-            tabs[i].querySelector('.tab-title').textContent = i + 1;
-
-            // remove .active class if exists
-            tabs[i].classList.remove('active');
-        }
+    return tab.classList.add('active');
+  }
 
 
-        // set editor text content from registry
-        editor.value = getContent(tab);
+  /**
+   * Close tab and delete data from local storage
+   */
+  let deleteTab = function(tab) {
+    deleteContent(tab);
 
-        return tab.classList.add('active');
+    tab.parentNode.removeChild(tab);
+
+    // we have to choose new tab while deleting current
+    // TODO: we should select active tab if it exists
+    return selectTab(manage.querySelector('.tab:last-child'));
+  }
+
+
+  /**
+   * Load tabs from localStorage
+   */
+  let loadTabs = function() {
+    let get = JSON.parse(localStorage.getItem('registry')) || [];
+
+    for(let i = 1; i < get.length; i++) {
+      createTab();
     }
 
-
-    /**
-     * Close tab and delete data from local storage
-     */
-    let deleteTab = function(tab) {
-        deleteContent(tab);
-
-        tab.parentNode.removeChild(tab);
-
-        // we have to choose new tab while deleting current
-        // TODO: we should select active tab if it exists
-        return selectTab(manage.querySelector('.tab:last-child'));
-    }
+    // we want to select first tab on reload this time
+    // TODO: we should store active tab and load it here later
+    return selectTab(manage.querySelector('.tab:first-child'));
+  }
 
 
-    /**
-     * Load tabs from localStorage
-     */
-    let loadTabs = function() {
-        let get = JSON.parse(localStorage.getItem('registry')) || [];
+  /**
+   * Get tab content from localStorage
+   */
+  let getContent = function(tab) {
+    let num = parseInt(tab.querySelector('.tab-title').textContent);
 
-        for(let i = 1; i < get.length; i++) {
-            createTab();
-        }
+    // get value from storage or define it
+    let get = JSON.parse(localStorage.getItem('registry')) || [];
 
-        // we want to select first tab on reload this time
-        // TODO: we should store active tab and load it here later
-        return selectTab(manage.querySelector('.tab:first-child'));
-    }
+    return get[num - 1] || '';
+  }
 
 
-    /**
-     * Get tab content from localStorage
-     */
-    let getContent = function(tab) {
-        let num = parseInt(tab.querySelector('.tab-title').textContent);
+  /**
+   * Set tab content to localStorage
+   */
+  let setContent = function(tab, value) {
+    let num = parseInt(tab.querySelector('.tab-title').textContent);
 
-        // get value from storage or define it
-        let get = JSON.parse(localStorage.getItem('registry')) || [];
+    // get value from storage or define it
+    let get = JSON.parse(localStorage.getItem('registry')) || [];
 
-        return get[num - 1] || '';
-    }
+    // set value to item
+    get[num - 1] = value;
 
-
-    /**
-     * Set tab content to localStorage
-     */
-    let setContent = function(tab, value) {
-        let num = parseInt(tab.querySelector('.tab-title').textContent);
-
-        // get value from storage or define it
-        let get = JSON.parse(localStorage.getItem('registry')) || [];
-
-        // set value to item
-        get[num - 1] = value;
-
-        return localStorage.setItem('registry', JSON.stringify(get));
-    }
+    return localStorage.setItem('registry', JSON.stringify(get));
+  }
 
 
-    /**
-     * Delete tab content from localStorage
-     */
-    let deleteContent = function(tab) {
-        let num = parseInt(tab.querySelector('.tab-title').textContent);
+  /**
+   * Delete tab content from localStorage
+   */
+  let deleteContent = function(tab) {
+    let num = parseInt(tab.querySelector('.tab-title').textContent);
 
-        // get value from storage or define it
-        let get = JSON.parse(localStorage.getItem('registry')) || [];
+    // get value from storage or define it
+    let get = JSON.parse(localStorage.getItem('registry')) || [];
 
-        // remove item from registry
-        get.splice(num - 1, 1);
+    // remove item from registry
+    get.splice(num - 1, 1);
 
-        return localStorage.setItem('registry', JSON.stringify(get));
-    }
+    return localStorage.setItem('registry', JSON.stringify(get));
+  }
 
 
-    return loadTabs();
+  return loadTabs();
 })();

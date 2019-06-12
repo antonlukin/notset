@@ -15,72 +15,80 @@ namespace notset\models;
 use Flight as app;
 
 class whois {
-	public function render() {
-		$query = app::request()->query;
+    public function render() {
+        $query = app::request()->query;
 
-		if(empty($query->q))
-			return app::render('whois', ['query' => app::request()->ip]);
+        if(empty($query->q)) {
+            return app::render('whois', ['query' => app::request()->ip]);
+        }
 
-		if(filter_var($query->q, FILTER_VALIDATE_IP))
-			return app::render('whois', $this->detect($query->q));
+        if(filter_var($query->q, FILTER_VALIDATE_IP)) {
+            return app::render('whois', $this->detect($query->q));
+        }
 
-		return app::render('whois', $this->lookup($query->q));
-	}
+        return app::render('whois', $this->lookup($query->q));
+    }
 
-	private function detect($query) {
-		$check = 'http://ip-api.com/json/' . $query;
-		$reply = json_decode(file_get_contents($check), true);
+    private function detect($query) {
+        $check = 'http://ip-api.com/json/' . $query;
+        $reply = json_decode(file_get_contents($check), true);
 
-		if(json_last_error() !== JSON_ERROR_NONE)
-			return ['query' => $query, 'reply' => "Error: can't fetch ip data. Please try later"];
+        if(json_last_error() !== JSON_ERROR_NONE) {
+            return ['query' => $query, 'reply' => "Error: can't fetch ip data. Please try later"];
+        }
 
-		return ['query' => $query, 'reply' => json_encode($reply, JSON_PRETTY_PRINT)];
-	}
+        return ['query' => $query, 'reply' => json_encode($reply, JSON_PRETTY_PRINT)];
+    }
 
-	private function lookup($query, $data = '') {
-		$link = (strpos($query, '://') === false) ? '//' . strtolower($query) : strtolower($query);
+    private function lookup($query, $data = '') {
+        $link = (strpos($query, '://') === false) ? '//' . strtolower($query) : strtolower($query);
 
-		list($server, $domain) = $this->server(parse_url($link, PHP_URL_HOST));
+        list($server, $domain) = $this->server(parse_url($link, PHP_URL_HOST));
 
-		if($server === null)
-			return ['query' => $query, 'reply' => "Error: can't find related whois server"];
+        if($server === null) {
+            return ['query' => $query, 'reply' => "Error: can't find related whois server"];
+        }
 
-		$socket = fsockopen($server, 43, $errno, $errstr, 10);
-		if (!$socket)
-			return ['query' => $query, 'reply' => "Error: whois server is unreachable"];
+        $socket = fsockopen($server, 43, $errno, $errstr, 10);
 
-		fputs($socket, $domain . "\r\n");
+        if (!$socket) {
+            return ['query' => $query, 'reply' => "Error: whois server is unreachable"];
+        }
 
-		while(!feof($socket)) {
-			$data .= fgets($socket, 128);
-		}
+        fputs($socket, $domain . "\r\n");
 
-		fclose($socket);
+        while(!feof($socket)) {
+            $data .= fgets($socket, 128);
+        }
 
-		return ['query' => $query, 'reply' => $data];
-	}
+        fclose($socket);
 
-	private function server($host, $server = null) {
-		if(!file_exists(app::get('app.data') . '/whois.json'))
-			return $server;
+        return ['query' => $query, 'reply' => $data];
+    }
 
-		$servers = json_decode(file_get_contents(app::get('app.data') . '/whois.json'), true);
+    private function server($host, $server = null) {
+        if(!file_exists(app::get('app.data') . '/whois.json')) {
+            return $server;
+        }
 
-		if(json_last_error() !== JSON_ERROR_NONE)
-			return $server;
+        $servers = json_decode(file_get_contents(app::get('app.data') . '/whois.json'), true);
 
-		for($i = 0; $i <= substr_count($host, '.'); $i++) {
-			$part = substr($host, strpos($host, '.') + 1);
+        if(json_last_error() !== JSON_ERROR_NONE) {
+            return $server;
+        }
 
-			if(array_key_exists($part, $servers)) {
-				$server = $servers[$part]['host'];
+        for($i = 0; $i <= substr_count($host, '.'); $i++) {
+            $part = substr($host, strpos($host, '.') + 1);
 
-				break;
-			}
+            if(array_key_exists($part, $servers)) {
+                $server = $servers[$part]['host'];
 
-			$host = $part;
-		}
+                break;
+            }
 
-		return [$server, $host];
-	}
+            $host = $part;
+        }
+
+        return [$server, $host];
+    }
 }

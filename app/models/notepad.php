@@ -15,7 +15,7 @@ namespace notset\models;
 use Flight as app;
 
 class notepad {
-	public function render() {
-		return app::render('notepad');
-	}
+    public function render() {
+        return app::render('notepad');
+    }
 }

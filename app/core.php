@@ -33,11 +33,11 @@ Flight::set('app.data', __DIR__ . "/data");
  * @since 2.0
  */
 Flight::map('error', function(Exception $ex) {
-	Flight::render('500');
+    Flight::render('500');
 });
 
 Flight::map('notFound', function() {
-	Flight::render('404');
+    Flight::render('404');
 });
 
 
@@ -47,17 +47,7 @@ Flight::map('notFound', function() {
  * @since 2.0
  */
 Flight::route("/", [
-	(new notset\models\whois), 'render'
-], true);
-
-
-/**
- * Route custom search
- *
- * @since 2.0
- */
-Flight::route("/cs/", [
-	(new notset\models\search), 'render'
+    (new notset\models\whois), 'render'
 ], true);
 
 
@@ -67,7 +57,7 @@ Flight::route("/cs/", [
  * @since 2.1
  */
 Flight::route("/e/", [
-	(new notset\models\notepad), 'render'
+    (new notset\models\notepad), 'render'
 ], true);
 
 
