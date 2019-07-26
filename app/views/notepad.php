@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>simple notepad › notset services</title>
 
-     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link href="https://lukin.ams3.digitaloceanspaces.com/notset/favicon.png" rel="icon" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://notset.ams3.digitaloceanspaces.com/notset.org/favicon.png" rel="icon" type="image/png">
     <link rel="stylesheet" href="/assets/styles.min.css" type="text/css" media="all" />
 
     <meta name="theme-color" content="#000000">

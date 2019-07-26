@@ -8,7 +8,7 @@
     <title>page not found › notset services</title>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link href="https://lukin.ams3.digitaloceanspaces.com/notset/favicon.png" rel="icon" type="image/png">
+    <link href="https://notset.ams3.digitaloceanspaces.com/notset.org/favicon.png" rel="icon" type="image/png">
     <link rel="stylesheet" href="/assets/styles.min.css" type="text/css" media="all" />
 
     <meta name="theme-color" content="#000000">
