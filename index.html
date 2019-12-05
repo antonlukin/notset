@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Just blank page for internal services">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <title>notset services</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://notset.ams3.digitaloceanspaces.com/notset.org/favicon.png" rel="icon" type="image/png">
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+
+            margin: 0;
+            padding: 0;
+
+            background-color: #000;
+        }
+
+        #mask {
+            display: none;
+        }
+
+        #logo {
+            display: block;
+
+            width: 15rem;
+            max-width: 75%;
+            height: 15rem;
+            margin: auto;
+
+            -webkit-mask-image: url('https://ams3.digitaloceanspaces.com/notset/notset.org/mask.svg');
+            mask-image: url('https://ams3.digitaloceanspaces.com/notset/notset.org/mask.svg');
+            -webkit-mask-position: center center;
+            mask-position: center center;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+
+            background-image: linear-gradient(90deg, #f6d327 0%, #de4daa 74%);
+
+            background-size: 400% 400%;
+            animation: gradient 4s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 100% 0%;
+            }
+            50% {
+                background-position: 0% 100%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="logo"></div>
+
+    <script>
+        const gradients = [
+            ['#F6D327', '#DE4DAA'],
+            ['#9F98E8', '#AFF6CF'],
+            ['#AFF1DA', '#F9EA8F'],
+            ['#DAACEC', '#94C997'],
+            ['#20BF55', '#01BAEF'],
+            ['#55D284', '#F2CF07'],
+            ['#7DDFF8', '#B1ADE2'],
+            ['#26F596', '#0499F2'],
+            ['#0FD64F', '#F8EF42'],
+            ['#FC575E', '#F7B42C'],
+            ['#F1A7F1', '#FAD0C4'],
+            ['#0652C5', '#D4418E'],
+            ['#DE4DAA', '#F6D327'],
+            ['#DCF8EF', '#FEE2F8'],
+            ['#028090', '#00BFB2'],
+            ['#FFED00', '#FF0000']
+        ];
+
+        const rand = Math.floor(Math.random() * gradients.length);
+
+        // Get random gradient
+        const item = gradients[rand];
+
+        // Create new gradient image
+        const image = `linear-gradient(90deg, ${item[0]} 0%, ${item[1]} 75%)`;
+
+        //  Set background image style
+        document.getElementById('logo').style.backgroundImage = image;
+    </script>
+</body>
+</html>
+
